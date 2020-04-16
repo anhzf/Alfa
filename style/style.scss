@@ -9,11 +9,15 @@ $color: (
 	'txt': $p-color-50,
 
 	'hover': $p-color-300
-); 
+);
 
 
 @import 'nav';
+@import 'main';
+@import 'typography';
+@import 'card';
 @import 'btn';
+@import 'input';
 @import 'slider';
 
 
@@ -28,16 +32,30 @@ img {
 	object-fit: cover;
 }
 
-p {
-	text-indent: 2em;
-}
-
 body {
 	overflow-x: hidden;
 	scroll-behavior: smooth;
 	scroll-snap-type: y proximity;
 	width: 100vw;
 	background-color: map-get($color, bg-base);
+}
+
+header {
+	div.slider-nav {
+		width: 70%;
+
+		@media (max-width: 800px) {
+			width: 80%;
+		}
+
+		@media (max-width: 450px) {
+			width: 90%;
+		}
+
+		@media (max-width: 320px) {
+			width: 95%;
+		}
+	}
 }
 
 input.search {

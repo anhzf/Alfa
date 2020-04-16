@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,6 +20,7 @@
 	<!-- COMING SOON META -->
 	<!-- <meta name="google" content="" /> -->
 </head>
+
 <body>
 
 	<nav class="curved">
@@ -27,20 +29,28 @@
 			<div class="left"><a href="">MENU</a></div>
 			<div class="center"><a href="">ALFA STORE</a></div>
 			<div class="right"><a href="">ABOUT</a></div>
-			
+
 		</div>
 	</nav>
-	
+
 
 	<header>
 
-		<div data-slide="headSlide" data-slbtn="dcr" class="round-back-button"></div>
-		<div data-slide="headSlide" data-slbtn="incr" class="round-next-button"></div>
+
+		<div class="slider-nav">
+			<button class="btn-rounded" @click="slideNav(-1)">
+				<span class="material-icons">keyboard_arrow_left</span>
+			</button>
+			<button class="btn-rounded" @click="slideNav()">
+				<span class="material-icons">keyboard_arrow_right</span>
+			</button>
+		</div>
+
 
 		<div id="headSlide" class="slider">
 
-			<div v-for="{title, subTitle, action} in slides" class="items">
-				<img src="assets/2545386.jpg">
+			<div v-for="{title, subTitle, image, action} in slides" class="items">
+				<img :src="image">
 				<div class="side-panel">
 					<h1>{{ title }}</h1>
 					<span>{{ subTitle }}</span>
@@ -50,20 +60,147 @@
 
 		</div>
 
-	</header>
 
+	</header>
+	<main>
+
+
+		<section>
+
+
+			<h1>from AlfaStore</h1>
+
+
+			<div class="card-list">
+
+
+				<div class="card long">
+					<h1>Diskon Lebaran</h1>
+					<p>Dapatkan diskon Lebaran sebesar 25%</p>
+					<div class="btn-group">
+						<a href="" class="btn">Read More</a>
+					</div>
+				</div>
+
+
+				<div class="card long card-img">
+					<h1>Lorem Ipsum</h1>
+					<img src="assets/9211.jpg">
+					<div class="btn-group">
+						<a href="" class="btn">Read More</a>
+					</div>
+				</div>
+
+
+				<div class="card long">
+					<h1>Lorem Ipsum</h1>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					<div class="btn-group">
+						<a href="" class="btn">Read More</a>
+					</div>
+				</div>
+
+
+			</div>
+
+
+			<a class="btn flex-end">MORE ARTICLES</a>
+
+
+		</section>
+
+
+		<section class="parallax">
+
+			<input type="text" class="search" placeholder="Type here to Search">
+
+		</section>
+
+
+
+		<section class="analogous2" style="scroll-snap-type: y mandatory;">
+
+		
+			<h1 class="scrollspy heading-sticky" data-scrollspy="sticked">Apparel</h1>
+			<div class="body-sticky" data-scrollspy="sticked">
+				<div class="card-gallery">
+					<div class="card">
+						<img src="">
+						<div class="desc">
+							<span>Klambi</span>
+							<i class="material-icons" data-tooltips="Add to Chart">add_shopping_cart</i>
+						</div>
+					</div>
+					<div class="card">
+						<img src="">
+						<div class="desc">
+							<span>Hoodie</span>
+							<i class="material-icons" data-tooltips="Add to Chart">add_shopping_cart</i>
+						</div>
+					</div>
+					<div class="card">
+						<img src="">
+						<div class="desc">
+							<span>Kathok</span>
+							<a href="?productID=1290123"><i class="material-icons" data-tooltips="Add to Chart">add_shopping_cart</i></a>
+						</div>
+					</div>
+					<div class="card">
+						<img src="">
+						<div class="desc">
+							<span>Topi</span>
+							<i class="material-icons" data-tooltips="Add to Chart">add_shopping_cart</i>
+						</div>
+					</div>
+					<div class="card">
+						<img src="">
+						<div class="desc">
+							<span>Jaket</span>
+							<i class="material-icons" data-tooltips="Add to Chart">add_shopping_cart</i>
+						</div>
+					</div>
+					<div class="card" style="justify-content: center; align-items: center;">
+						<button class="btn outline">More</button>
+					</div>
+				</div>
+			</div>
+
+
+			<h1 class="scrollspy heading-sticky" data-scrollspy="sticked">Gadget</h1>
+			<div class="body-sticky" data-scrollspy="sticked">
+				<div class="card-gallery">
+					<div class="card"></div>
+					<div class="card"></div>
+					<div class="card"></div>
+					<div class="card"></div>
+					<div class="card"></div>
+					<div class="card"></div>
+				</div>
+			</div>
+
+
+		</section>
+
+
+	</main>
 
 </body>
 <script src="./lib/vue.js"></script>
+<script src="./script.js"></script>
 <script>
-
-	let slider = new Vue({
-		el: '#headSlide',
+	let header = new Vue({
+		el: 'header',
 		data: {
-			slides: [
-				{
+			currentSlide: 0,
+			slides: [{
 					title: 'Berbagai Souvenir Perusahaan',
 					subTitle: 'Disini kami melayani penjualan Barang Promosi dengan harga yang murah dan Berkualitas. Meriahkan Acara anda dengan Souvenir yang berkualitas dari kami.',
+					image: './assets/2545386.jpg',
 					action: {
 						text: 'Lihat Produk',
 						to: 'javascript:void(0)'
@@ -71,15 +208,29 @@
 				},
 				{
 					title: 'Berbagai Souvenir Perusahaan',
-					subTitle: 'Disini kami melayani penjualan Barang Promosi dengan harga yang murah dan Berkualitas. Meriahkan Acara anda dengan Souvenir yang berkualitas dari kami.',
-					action: {
-						text: 'Lihat Produk',
-						to: 'javascript:void(0)'
-					}
+					image: './assets/2545386.jpg',
+					subTitle: 'Disini kami melayani penjualan Barang Promosi dengan harga yang murah dan Berkualitas. Meriahkan Acara anda dengan Souvenir yang berkualitas dari kami.'
+				},
+				{
+					title: 'Berbagai Souvenir Perusahaan',
+					image: './assets/2315594.jpg'
 				}
 			]
+		},
+		methods: {
+			slideNav(to = 1) {
+				let
+					slides = this.$el.querySelectorAll('div.items'),
+					max = slides.length - 1
+
+				this.currentSlide = (this.currentSlide + to > max) ? 0 :
+					(this.currentSlide + to < 0) ? max :
+					this.currentSlide + to
+
+				slides[this.currentSlide].scrollIntoView()
+			}
 		}
 	})
-
 </script>
+
 </html>

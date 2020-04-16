@@ -1,0 +1,35 @@
+main {
+    $color: (
+        'bg-base': #FFF,
+        'bg': $p-color-50,
+
+        'text-base': $p-color-900
+    );
+
+
+	background-color: map-get($color, bg);
+    min-height: 80vh;
+    
+
+    & > * {
+        scroll-snap-align: start;
+    }
+
+    & > section {
+        padding: 3rem 75px;
+        min-height: 40vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+
+        & > h1 {
+            font-family: 'Merriweather Sans', sans-serif;
+            font-size: 3rem;
+            color: map-get($color, text-base);
+        }
+    }
+}
+
+@import 'sec-search';
