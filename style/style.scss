@@ -1,5 +1,22 @@
 @import 'var';
 
+
+$color: (
+	'bg-base': $p-color-100,
+	'bg': $p-color-900,
+
+	'txt-base': #555,
+	'txt': $p-color-50,
+
+	'hover': $p-color-300
+); 
+
+
+@import 'nav';
+@import 'btn';
+@import 'slider';
+
+
 * {
 	position: relative;
 	box-sizing: border-box;
@@ -20,48 +37,30 @@ body {
 	scroll-behavior: smooth;
 	scroll-snap-type: y proximity;
 	width: 100vw;
-	background-color: $p-color-100;
+	background-color: map-get($color, bg-base);
 }
 
-nav {
-	width: 100%;
-
-
-	div.container {
-		padding: 2vh 10vw;
-		display: flex;
-		justify-content: space-between;
-		background-color: $p-color-900;
-
-		*:nth-child(4n) {
-			display: none;
-		}
-
-
-		div.center {
-			font-size: 140%;
-			color: $p-color-50;
-			align-self: center;
-		}
-
-
-		a {
-			color: #FFF;
-			font-family: 'Merriweather Sans', sans-serif;
-			text-decoration: none;
-
-
-			&:hover {
-				color: scale-color($p-color-900, $lightness: +60%);
-			}
-		}
-	}	
-
-
-	&.curved > div.container {
-		height: 12vh;
-		border-radius: 0 0 50% 50% / 0 0 100% 100%;
-		box-shadow: 0 1px 5px #000;
-		transform: scale(1.2);
+input.search {
+	@media(max-width: 450px) {
+		width: 100%;
+		padding: 20px 40px;
 	}
+}
+
+
+
+//	Components Variable
+
+$_headerSlide-horizontal-align: calc(10% + 100px);
+
+@media(max-width: 1000px) {
+	$_headerSlide-horizontal-align: calc(10% + 70px);
+}
+
+@media(max-width: 800px) {
+	$_headerSlide-horizontal-align: 10%;
+}
+
+@media(max-width: 540px) {
+	$_headerSlide-horizontal-align: 5%;
 }

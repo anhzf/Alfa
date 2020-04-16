@@ -20,12 +20,66 @@
 	<!-- <meta name="google" content="" /> -->
 </head>
 <body>
+
 	<nav class="curved">
 		<div class="container">
+
 			<div class="left"><a href="">MENU</a></div>
 			<div class="center"><a href="">ALFA STORE</a></div>
 			<div class="right"><a href="">ABOUT</a></div>
+			
 		</div>
 	</nav>
+	
+
+	<header>
+
+		<div data-slide="headSlide" data-slbtn="dcr" class="round-back-button"></div>
+		<div data-slide="headSlide" data-slbtn="incr" class="round-next-button"></div>
+
+		<div id="headSlide" class="slider">
+
+			<div v-for="{title, subTitle, action} in slides" class="items">
+				<img src="assets/2545386.jpg">
+				<div class="side-panel">
+					<h1>{{ title }}</h1>
+					<span>{{ subTitle }}</span>
+					<a v-if="Boolean(action)" :href="action.to" class="btn-outline">{{ action.text }}</a>
+				</div>
+			</div>
+
+		</div>
+
+	</header>
+
+
 </body>
+<script src="./lib/vue.js"></script>
+<script>
+
+	let slider = new Vue({
+		el: '#headSlide',
+		data: {
+			slides: [
+				{
+					title: 'Berbagai Souvenir Perusahaan',
+					subTitle: 'Disini kami melayani penjualan Barang Promosi dengan harga yang murah dan Berkualitas. Meriahkan Acara anda dengan Souvenir yang berkualitas dari kami.',
+					action: {
+						text: 'Lihat Produk',
+						to: 'javascript:void(0)'
+					}
+				},
+				{
+					title: 'Berbagai Souvenir Perusahaan',
+					subTitle: 'Disini kami melayani penjualan Barang Promosi dengan harga yang murah dan Berkualitas. Meriahkan Acara anda dengan Souvenir yang berkualitas dari kami.',
+					action: {
+						text: 'Lihat Produk',
+						to: 'javascript:void(0)'
+					}
+				}
+			]
+		}
+	})
+
+</script>
 </html>

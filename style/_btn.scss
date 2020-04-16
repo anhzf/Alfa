@@ -1,0 +1,73 @@
+%btn {
+    margin: 4px;
+    border: none;
+    padding: 14px 15px;
+    color: map-get($color, txt);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: small;
+    font-family: 'Roboto' , sans-serif;
+    font-weight: 500;
+    background-color: scale-color(map-get($color, bg), $lightness: +10%);
+    border-radius: 3px;
+    box-shadow: 2px 2px 4px 1px rgba(0,0,0,.1), -2px 2px 4px 1px rgba(0,0,0,.1);
+
+
+    @media (max-width: 1000px) {
+        font-size: x-small;
+        padding: 10px 12px;
+        box-shadow: 1px 1px 4px .8px rgba(0,0,0,0.2), -1px 1px 4px .8px rgba(0,0,0,0.2);
+    }
+    @media (max-width: 320px) {
+		font-size: xx-small;
+    }
+    
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background-color: rgba(0,0,0,.15);
+        clip-path: circle(0%);
+        transition: clip-path .2s cubic-bezier(0.5,-1,1,.5);
+        will-change: clip-path;
+    }
+
+    &:hover {
+        background-color: $p-color-500;
+        box-shadow: 3px 3px 6px rgba(0,0,0,0.2), -3px 3px 6px rgba(0,0,0,0.2);
+    }
+
+    &:active::before {
+        clip-path: circle(100%);
+    }
+}
+
+
+
+
+.btn {
+    @extend %btn;
+}
+
+
+.btn-outline {
+    @extend %btn;
+    color: $p-color-900;
+    background-color: transparent;
+    border: 1.5px solid $p-color-900;
+    
+
+    &:hover {
+        background-color: rgba(0,0,0,.1);
+    }
+}
+
+
+.btn-flat {
+    @extend %btn;
+	color: $p-color-900;
+	background-color: unset;
+	box-shadow: unset;
+}
