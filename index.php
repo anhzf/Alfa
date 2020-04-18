@@ -126,14 +126,16 @@
 		<section class="analogous2" style="scroll-snap-type: y mandatory;">
 
 		
-			<h1 class="scrollspy heading-sticky" data-scrollspy="sticked">Apparel</h1>
-			<div class="body-sticky" data-scrollspy="sticked">
+			<div class="product-groups">
+				<h1 class="section-header">Apparel</h1>
 				<div class="card-gallery">
-					<div class="card">
+					<!-- <div class="card">
 						<img src="">
 						<div class="desc">
 							<span>Klambi</span>
-							<i class="material-icons" data-tooltips="Add to Chart">add_shopping_cart</i>
+							<a href="" class="btn-rounded">
+								<i class="material-icons" data-tooltips="Add to Chart">add_shopping_cart</i>
+							</a>
 						</div>
 					</div>
 					<div class="card">
@@ -163,23 +165,32 @@
 							<span>Jaket</span>
 							<i class="material-icons" data-tooltips="Add to Chart">add_shopping_cart</i>
 						</div>
-					</div>
+					</div> -->
+
+
+					<div v-for="{ name, thumbnail } in products" class="card">
+			 			<img :src="thumbnail">
+			 			<div class="desc">
+			 				<span>{{ name }}</span>
+			 				<a href="" class="btn-rounded">
+			 					<i class="material-icons" data-tooltips="Add to Chart">add_shopping_cart</i>
+			 				</a>
+			 			</div>
+			 		</div>
+
+
+					<!-- <product-card
+						v-for="{ productID, name, thumbnail } in products"
+						:key="productID"
+						:name="name"
+						:thumbnail="thumbnail"
+					></product-card> -->
+
 					<div class="card" style="justify-content: center; align-items: center;">
-						<button class="btn outline">More</button>
+						<button class="btn-outline">More</button>
 					</div>
-				</div>
-			</div>
 
-
-			<h1 class="scrollspy heading-sticky" data-scrollspy="sticked">Gadget</h1>
-			<div class="body-sticky" data-scrollspy="sticked">
-				<div class="card-gallery">
-					<div class="card"></div>
-					<div class="card"></div>
-					<div class="card"></div>
-					<div class="card"></div>
-					<div class="card"></div>
-					<div class="card"></div>
+					
 				</div>
 			</div>
 
@@ -193,6 +204,7 @@
 <script src="./lib/vue.js"></script>
 <script src="./script.js"></script>
 <script>
+	
 	let header = new Vue({
 		el: 'header',
 		data: {
@@ -231,6 +243,50 @@
 			}
 		}
 	})
+	
+	let main = new Vue({
+		el: 'main',
+		data: {
+			products: [
+				{
+					productID: 10010,
+					name: 'Jaket',
+					thumbnail: './assets/8093.jpg'
+				},
+				{
+					productID: 10011,
+					name: 'Jaket',
+					thumbnail: './assets/8093.jpg'
+				},
+				// {
+				// 	productID: 10013,
+				// 	name: 'Jaket',
+				// 	thumbnail: './assets/8093.jpg'
+				// },
+				{
+					productID: 10012,
+					name: 'Jaket',
+					thumbnail: './assets/8093.jpg'
+				}
+			]
+		}
+	})
+	
+	// Vue.component('product-card',{
+    //     props: ['name','thumbnail'],
+	// 	template: `
+	// 		<div class="card">
+	// 			<img v-bind:src="{{ thumbnail }}">
+	// 			<div class="desc">
+	// 				<span>{{ name }}</span>
+	// 				<a href="" class="btn-rounded">
+	// 					<i class="material-icons" data-tooltips="Add to Chart">add_shopping_cart</i>
+	// 				</a>
+	// 			</div>
+	// 		</div>
+	// 	`
+	// })
+
 </script>
 
 </html>

@@ -1,3 +1,10 @@
 p {
 	text-indent: 2em;
 }
+
+.section-header {
+	margin: 0;
+	font-family: 'Merriweather Sans', sans-serif;
+	font-size: 3rem;
+	color: map-get($color, bg);
+}
