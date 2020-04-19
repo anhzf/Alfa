@@ -70,7 +70,13 @@
     @extend %btn;
 	color: $p-color-900;
 	background-color: unset;
-	box-shadow: unset;
+    box-shadow: unset;
+    
+
+    &:hover {
+        background-color: #0001;
+        box-shadow: unset;
+    }
 }
 
 

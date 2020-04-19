@@ -163,35 +163,37 @@
 		</section>
 
 	</main>
+
+	
 	<div class="modal__container">
 		<div class="modal-full-screen">
 			<div class="modal__header">
-				<h1>[Products Name]</h1>
+				<h1>Detail Barang</h1>
 			</div>
 			<div class="modal__body product-on-modal">
 				<div class="img">
 					<div class="img-gallery-slide">
-						<img src="assets/Men_s-IMBA-Jacket-Night-Ride-Font-View_2000x.jpg" alt="Jaket">
-						<img src="assets/Men_s-IMBA-Jacket-Night-Ride-Font-View_2000x.jpg" alt="Jaket">
-						<img src="assets/Men_s-IMBA-Jacket-Night-Ride-Font-View_2000x.jpg" alt="Jaket">
-						<img src="assets/Men_s-IMBA-Jacket-Night-Ride-Font-View_2000x.jpg" alt="Jaket">
-						<img src="assets/Men_s-IMBA-Jacket-Night-Ride-Font-View_2000x.jpg" alt="Jaket">
-						<img src="assets/Men_s-IMBA-Jacket-Night-Ride-Font-View_2000x.jpg" alt="Jaket">
+						<img src="./assets/jaket.jpg" alt="Jaket">
+						<img src="./assets/jaket.jpg" alt="Jaket">
+						<img src="./assets/jaket.jpg" alt="Jaket">
+						<img src="./assets/jaket.jpg" alt="Jaket">
+						<img src="./assets/jaket.jpg" alt="Jaket">
+						<img src="./assets/jaket.jpg" alt="Jaket">
 					</div>
-					<img src="assets/Men_s-IMBA-Jacket-Night-Ride-Font-View_2000x.jpg" alt="Jaket">
+					<img src="./assets/jaket.jpg" alt="Jaket">
 				</div>
 				<div class="item-desc">
 					<h1>JAKET ASLI LOREM IPSUM TERBUAT DARI KAYU JATI</h1>
-					<div>
+					<div class="info">
 						<div class="rating">
-							<i class="material-icons" style="color: var(--p-color-500);">star</i>
-							<i class="material-icons" style="color: var(--p-color-500);">star</i>
-							<i class="material-icons" style="color: var(--p-color-500);">star</i>
-							<i class="material-icons" style="color: var(--p-color-500);">star</i>
 							<i class="material-icons">star</i>
-							1783 Review
+							<i class="material-icons">star</i>
+							<i class="material-icons">star</i>
+							<i class="material-icons">star</i>
+							<i class="material-icons">star</i>
+							<span>1783 Review</span>
 						</div>
-						<span class="price">Rp 180.000<span class="sold">Terjual 90.123</span></span>
+						<span class="price">Rp 180.000<span class="sold"> Terjual 90.123</span></span>
 					</div>
 					<p class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -249,15 +251,15 @@
 					<h4>SUGGESTED PRODUCTS</h4>
 					<div class="card-gallery suggested-products">
 						<div class="card">
-							<img src="assets/Men_s-IMBA-Jacket-Night-Ride-Font-View_2000x.jpg" alt="Jaket">
+							<img src="./assets/jaket.jpg" alt="Jaket">
 							<span>jaket</span>
 						</div>
 						<div class="card">
-							<img src="assets/Men_s-IMBA-Jacket-Night-Ride-Font-View_2000x.jpg" alt="Jaket">
+							<img src="./assets/jaket.jpg" alt="Jaket">
 							<span>jaket</span>
 						</div>
 						<div class="card">
-							<img src="assets/Men_s-IMBA-Jacket-Night-Ride-Font-View_2000x.jpg" alt="Jaket">
+							<img src="./assets/jaket.jpg" alt="Jaket">
 							<span>jaket</span>
 						</div>
 						<div class="card" style="justify-content: center; align-items: center;">
