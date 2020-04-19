@@ -1,0 +1,49 @@
+{
+    "slides": [
+        {
+            "title": "Berbagai Souvenir Perusahaan",
+            "subTitle": "Disini kami melayani penjualan Barang Promosi dengan harga yang murah dan Berkualitas. Meriahkan Acara anda dengan Souvenir yang berkualitas dari kami.",
+            "image": "./assets/2545386.jpg",
+            "action": {
+                "text": "Lihat Produk",
+                "to": "javascript:void(0)"
+            }
+        },
+        {
+            "title": "Berbagai Souvenir Perusahaan",
+            "image": "./assets/2545386.jpg",
+            "subTitle": "Disini kami melayani penjualan Barang Promosi dengan harga yang murah dan Berkualitas. Meriahkan Acara anda dengan Souvenir yang berkualitas dari kami."
+        },
+        {
+            "title": "Berbagai Souvenir Perusahaan",
+            "image": "./assets/2315594.jpg"
+        }
+    ],
+    "products": [
+        {
+            "productID": 10010,
+            "name": "Jaket",
+            "thumbnail": "./assets/Men_s-IMBA-Jacket-Night-Ride-Font-View_2000x.jpg"
+        },
+        {
+            "productID": 10222,
+            "name": "Hoodie",
+            "thumbnail": "./assets/9211.jpg"
+        },
+        {
+            "productID": 10011,
+            "name": "Topi",
+            "thumbnail": "./assets/stock-photo-baseball-cap-isolated-on-white-background-701847175.jpg"
+        },
+        {
+            "productID": 10013,
+            "name": "Kathok",
+            "thumbnail": "./assets/8093.jpg"
+        },
+        {
+            "productID": 10012,
+            "name": "Jaket",
+            "thumbnail": "./assets/8093.jpg"
+        }
+    ]
+}

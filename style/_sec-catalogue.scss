@@ -1,0 +1,14 @@
+div.product-groups {
+    width: 80%;
+
+
+    div.card  {
+        cursor: pointer;
+
+
+        [class^=btn-] {
+            color: #000;
+            background-color: #fff;
+        }
+    }
+}

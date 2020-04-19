@@ -33,7 +33,6 @@
 		</div>
 	</nav>
 
-
 	<header>
 
 
@@ -62,8 +61,8 @@
 
 
 	</header>
-	<main>
 
+	<main>
 
 		<section>
 
@@ -114,77 +113,44 @@
 
 		</section>
 
+		<search-section></search-section>
 
-		<section class="parallax">
-
-			<input type="text" class="search" placeholder="Type here to Search">
-
-		</section>
-
-
-
-		<section class="analogous2" style="scroll-snap-type: y mandatory;">
-
+		<section style="scroll-snap-type: y mandatory;">
 		
 			<div class="product-groups">
 				<h1 class="section-header">Apparel</h1>
 				<div class="card-gallery">
-					<!-- <div class="card">
-						<img src="">
-						<div class="desc">
-							<span>Klambi</span>
-							<a href="" class="btn-rounded">
-								<i class="material-icons" data-tooltips="Add to Chart">add_shopping_cart</i>
-							</a>
-						</div>
-					</div>
-					<div class="card">
-						<img src="">
-						<div class="desc">
-							<span>Hoodie</span>
-							<i class="material-icons" data-tooltips="Add to Chart">add_shopping_cart</i>
-						</div>
-					</div>
-					<div class="card">
-						<img src="">
-						<div class="desc">
-							<span>Kathok</span>
-							<a href="?productID=1290123"><i class="material-icons" data-tooltips="Add to Chart">add_shopping_cart</i></a>
-						</div>
-					</div>
-					<div class="card">
-						<img src="">
-						<div class="desc">
-							<span>Topi</span>
-							<i class="material-icons" data-tooltips="Add to Chart">add_shopping_cart</i>
-						</div>
-					</div>
-					<div class="card">
-						<img src="">
-						<div class="desc">
-							<span>Jaket</span>
-							<i class="material-icons" data-tooltips="Add to Chart">add_shopping_cart</i>
-						</div>
-					</div> -->
 
-
-					<div v-for="{ name, thumbnail } in products" class="card">
-			 			<img :src="thumbnail">
-			 			<div class="desc">
-			 				<span>{{ name }}</span>
-			 				<a href="" class="btn-rounded">
-			 					<i class="material-icons" data-tooltips="Add to Chart">add_shopping_cart</i>
-			 				</a>
-			 			</div>
-			 		</div>
-
-
-					<!-- <product-card
+					<product-card
 						v-for="{ productID, name, thumbnail } in products"
 						:key="productID"
+						:productid="productID"
 						:name="name"
 						:thumbnail="thumbnail"
-					></product-card> -->
+						@add-to-cart="updateCart"
+					></product-card>
+
+					<div class="card" style="justify-content: center; align-items: center;">
+						<button class="btn-outline">More</button>
+					</div>
+					
+				</div>
+			</div>
+	
+			<div class="product-groups">
+				<h1 class="section-header">Apparel</h1>
+				<div class="card-gallery">
+
+
+					<product-card
+						v-for="{ productID, name, thumbnail } in products"
+						:key="productID"
+						:productid="productID"
+						:name="name"
+						:thumbnail="thumbnail"
+						@add-to-cart="updateCart"
+					></product-card>
+
 
 					<div class="card" style="justify-content: center; align-items: center;">
 						<button class="btn-outline">More</button>
@@ -194,99 +160,120 @@
 				</div>
 			</div>
 
-
 		</section>
 
-
 	</main>
-
+	<div class="modal__container">
+		<div class="modal-full-screen">
+			<div class="modal__header">
+				<h1>[Products Name]</h1>
+			</div>
+			<div class="modal__body product-on-modal">
+				<div class="img">
+					<div class="img-gallery-slide">
+						<img src="assets/Men_s-IMBA-Jacket-Night-Ride-Font-View_2000x.jpg" alt="Jaket">
+						<img src="assets/Men_s-IMBA-Jacket-Night-Ride-Font-View_2000x.jpg" alt="Jaket">
+						<img src="assets/Men_s-IMBA-Jacket-Night-Ride-Font-View_2000x.jpg" alt="Jaket">
+						<img src="assets/Men_s-IMBA-Jacket-Night-Ride-Font-View_2000x.jpg" alt="Jaket">
+						<img src="assets/Men_s-IMBA-Jacket-Night-Ride-Font-View_2000x.jpg" alt="Jaket">
+						<img src="assets/Men_s-IMBA-Jacket-Night-Ride-Font-View_2000x.jpg" alt="Jaket">
+					</div>
+					<img src="assets/Men_s-IMBA-Jacket-Night-Ride-Font-View_2000x.jpg" alt="Jaket">
+				</div>
+				<div class="item-desc">
+					<h1>JAKET ASLI LOREM IPSUM TERBUAT DARI KAYU JATI</h1>
+					<div>
+						<div class="rating">
+							<i class="material-icons" style="color: var(--p-color-500);">star</i>
+							<i class="material-icons" style="color: var(--p-color-500);">star</i>
+							<i class="material-icons" style="color: var(--p-color-500);">star</i>
+							<i class="material-icons" style="color: var(--p-color-500);">star</i>
+							<i class="material-icons">star</i>
+							1783 Review
+						</div>
+						<span class="price">Rp 180.000<span class="sold">Terjual 90.123</span></span>
+					</div>
+					<p class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					<div class="reviews">
+						<h3>Review</h3>
+						<div class="card-gallery">
+							<div class="review card">
+								<div class="thumbnail">
+									<img src="https://iconsgalore.com/wp-content/uploads/2018/10/male-avatar-1-featured-2.png">
+								</div>
+								<div>
+									<span class="user">Fulan</span>
+									<span class="comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+										tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+										quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+										consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+										cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+										proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+								</div>
+							</div>
+							<div class="review card">
+								<div class="thumbnail">
+									<img src="https://iconsgalore.com/wp-content/uploads/2018/10/male-avatar-1-featured-2.png">
+								</div>
+								<div>
+									<span class="user">Fulan</span>
+									<span class="comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+										tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+										quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+										consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+										cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+										proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+								</div>
+							</div>
+							<div class="review card">
+								<div class="thumbnail">
+									<img src="https://iconsgalore.com/wp-content/uploads/2018/10/male-avatar-1-featured-2.png">
+								</div>
+								<div>
+									<span class="user">Fulan</span>
+									<span class="comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+										tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+										quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+										consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+										cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+										proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<h4>SUGGESTED PRODUCTS</h4>
+					<div class="card-gallery suggested-products">
+						<div class="card">
+							<img src="assets/Men_s-IMBA-Jacket-Night-Ride-Font-View_2000x.jpg" alt="Jaket">
+							<span>jaket</span>
+						</div>
+						<div class="card">
+							<img src="assets/Men_s-IMBA-Jacket-Night-Ride-Font-View_2000x.jpg" alt="Jaket">
+							<span>jaket</span>
+						</div>
+						<div class="card">
+							<img src="assets/Men_s-IMBA-Jacket-Night-Ride-Font-View_2000x.jpg" alt="Jaket">
+							<span>jaket</span>
+						</div>
+						<div class="card" style="justify-content: center; align-items: center;">
+							<a class="btn outline">MORE</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal__footer">
+				<button class="btn-flat"">CLOSE</button>
+				<button class="btn">ADD TO CHARTS</button>
+			</div>
+		</div>
+	</div>
 </body>
 <script src="./lib/vue.js"></script>
-<script src="./script.js"></script>
-<script>
-	
-	let header = new Vue({
-		el: 'header',
-		data: {
-			currentSlide: 0,
-			slides: [{
-					title: 'Berbagai Souvenir Perusahaan',
-					subTitle: 'Disini kami melayani penjualan Barang Promosi dengan harga yang murah dan Berkualitas. Meriahkan Acara anda dengan Souvenir yang berkualitas dari kami.',
-					image: './assets/2545386.jpg',
-					action: {
-						text: 'Lihat Produk',
-						to: 'javascript:void(0)'
-					}
-				},
-				{
-					title: 'Berbagai Souvenir Perusahaan',
-					image: './assets/2545386.jpg',
-					subTitle: 'Disini kami melayani penjualan Barang Promosi dengan harga yang murah dan Berkualitas. Meriahkan Acara anda dengan Souvenir yang berkualitas dari kami.'
-				},
-				{
-					title: 'Berbagai Souvenir Perusahaan',
-					image: './assets/2315594.jpg'
-				}
-			]
-		},
-		methods: {
-			slideNav(to = 1) {
-				let
-					slides = this.$el.querySelectorAll('div.items'),
-					max = slides.length - 1
-
-				this.currentSlide = (this.currentSlide + to > max) ? 0 :
-					(this.currentSlide + to < 0) ? max :
-					this.currentSlide + to
-
-				slides[this.currentSlide].scrollIntoView()
-			}
-		}
-	})
-	
-	let main = new Vue({
-		el: 'main',
-		data: {
-			products: [
-				{
-					productID: 10010,
-					name: 'Jaket',
-					thumbnail: './assets/8093.jpg'
-				},
-				{
-					productID: 10011,
-					name: 'Jaket',
-					thumbnail: './assets/8093.jpg'
-				},
-				// {
-				// 	productID: 10013,
-				// 	name: 'Jaket',
-				// 	thumbnail: './assets/8093.jpg'
-				// },
-				{
-					productID: 10012,
-					name: 'Jaket',
-					thumbnail: './assets/8093.jpg'
-				}
-			]
-		}
-	})
-	
-	// Vue.component('product-card',{
-    //     props: ['name','thumbnail'],
-	// 	template: `
-	// 		<div class="card">
-	// 			<img v-bind:src="{{ thumbnail }}">
-	// 			<div class="desc">
-	// 				<span>{{ name }}</span>
-	// 				<a href="" class="btn-rounded">
-	// 					<i class="material-icons" data-tooltips="Add to Chart">add_shopping_cart</i>
-	// 				</a>
-	// 			</div>
-	// 		</div>
-	// 	`
-	// })
-
-</script>
+<script src="./app.js"></script>
 
 </html>
