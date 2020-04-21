@@ -171,7 +171,7 @@
 				<h1>Detail Barang</h1>
 			</div>
 			<div class="modal__body product-on-modal">
-				<div class="img">
+				<div class="preview">
 					<div class="img-gallery-slide">
 						<img src="./assets/jaket.jpg" alt="Jaket">
 						<img src="./assets/jaket.jpg" alt="Jaket">
@@ -191,7 +191,11 @@
 							<i class="material-icons">star</i>
 							<i class="material-icons">star</i>
 							<i class="material-icons">star</i>
-							<span>1783 Review</span>
+							<span style="
+								grid-column: 5 span;
+								text-align: right;
+								"
+							>1783 Review</span>
 						</div>
 						<span class="price">Rp 180.000<span class="sold"> Terjual 90.123</span></span>
 					</div>
