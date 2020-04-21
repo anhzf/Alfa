@@ -35,7 +35,6 @@
 
 	<header>
 
-
 		<div class="slider-nav">
 			<button class="btn-rounded" @click="slideNav(-1)">
 				<span class="material-icons">keyboard_arrow_left</span>
@@ -44,7 +43,6 @@
 				<span class="material-icons">keyboard_arrow_right</span>
 			</button>
 		</div>
-
 
 		<div id="headSlide" class="slider">
 
@@ -59,19 +57,15 @@
 
 		</div>
 
-
 	</header>
 
 	<main>
 
 		<section>
 
-
 			<h1>from AlfaStore</h1>
 
-
 			<div class="card-list">
-
 
 				<div class="card long">
 					<h1>Diskon Lebaran</h1>
@@ -81,15 +75,13 @@
 					</div>
 				</div>
 
-
 				<div class="card long card-img">
 					<h1>Lorem Ipsum</h1>
-					<img src="assets/9211.jpg">
+					<img src="assets/9211 rz.jpg">
 					<div class="btn-group">
 						<a href="" class="btn">Read More</a>
 					</div>
 				</div>
-
 
 				<div class="card long">
 					<h1>Lorem Ipsum</h1>
@@ -104,12 +96,9 @@
 					</div>
 				</div>
 
-
 			</div>
 
-
 			<a class="btn flex-end">MORE ARTICLES</a>
-
 
 		</section>
 
@@ -128,6 +117,7 @@
 						:name="name"
 						:thumbnail="thumbnail"
 						@add-to-cart="updateCart"
+						@show-modal="showModal"
 					></product-card>
 
 					<div class="card" style="justify-content: center; align-items: center;">
@@ -162,122 +152,18 @@
 
 		</section>
 
+		<div v-show="modal" class="modal__container">
+			
+			<product-modal
+				:modal-data="modalData"
+				@close="closeModal"
+			></product-modal>
+
+		</div>
+
 	</main>
 
 	
-	<div class="modal__container">
-		<div class="modal-full-screen">
-			<div class="modal__header">
-				<h1>Detail Barang</h1>
-			</div>
-			<div class="modal__body product-on-modal">
-				<div class="preview">
-					<div class="img-gallery-slide">
-						<img src="./assets/jaket.jpg" alt="Jaket">
-						<img src="./assets/jaket.jpg" alt="Jaket">
-						<img src="./assets/jaket.jpg" alt="Jaket">
-						<img src="./assets/jaket.jpg" alt="Jaket">
-						<img src="./assets/jaket.jpg" alt="Jaket">
-						<img src="./assets/jaket.jpg" alt="Jaket">
-					</div>
-					<img src="./assets/jaket.jpg" alt="Jaket">
-				</div>
-				<div class="item-desc">
-					<h1>JAKET ASLI LOREM IPSUM TERBUAT DARI KAYU JATI</h1>
-					<div class="info">
-						<div class="rating">
-							<i class="material-icons">star</i>
-							<i class="material-icons">star</i>
-							<i class="material-icons">star</i>
-							<i class="material-icons">star</i>
-							<i class="material-icons">star</i>
-							<span style="
-								grid-column: 5 span;
-								text-align: right;
-								"
-							>1783 Review</span>
-						</div>
-						<span class="price">Rp 180.000<span class="sold"> Terjual 90.123</span></span>
-					</div>
-					<p class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-					<div class="reviews">
-						<h3>Review</h3>
-						<div class="card-gallery">
-							<div class="review card">
-								<div class="thumbnail">
-									<img src="https://iconsgalore.com/wp-content/uploads/2018/10/male-avatar-1-featured-2.png">
-								</div>
-								<div>
-									<span class="user">Fulan</span>
-									<span class="comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-										tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-										quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-										consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-										cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-										proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
-								</div>
-							</div>
-							<div class="review card">
-								<div class="thumbnail">
-									<img src="https://iconsgalore.com/wp-content/uploads/2018/10/male-avatar-1-featured-2.png">
-								</div>
-								<div>
-									<span class="user">Fulan</span>
-									<span class="comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-										tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-										quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-										consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-										cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-										proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
-								</div>
-							</div>
-							<div class="review card">
-								<div class="thumbnail">
-									<img src="https://iconsgalore.com/wp-content/uploads/2018/10/male-avatar-1-featured-2.png">
-								</div>
-								<div>
-									<span class="user">Fulan</span>
-									<span class="comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-										tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-										quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-										consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-										cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-										proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<h4>SUGGESTED PRODUCTS</h4>
-					<div class="card-gallery suggested-products">
-						<div class="card">
-							<img src="./assets/jaket.jpg" alt="Jaket">
-							<span>jaket</span>
-						</div>
-						<div class="card">
-							<img src="./assets/jaket.jpg" alt="Jaket">
-							<span>jaket</span>
-						</div>
-						<div class="card">
-							<img src="./assets/jaket.jpg" alt="Jaket">
-							<span>jaket</span>
-						</div>
-						<div class="card" style="justify-content: center; align-items: center;">
-							<a class="btn outline">MORE</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="modal__footer">
-				<button class="btn-flat"">CLOSE</button>
-				<button class="btn">ADD TO CHARTS</button>
-			</div>
-		</div>
-	</div>
 </body>
 <script src="./lib/vue.js"></script>
 <script src="./app.js"></script>
