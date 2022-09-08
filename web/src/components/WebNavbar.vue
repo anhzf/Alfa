@@ -2,28 +2,36 @@
   <nav :class="{ 'shadow-lg': y > 0 }">
     <transition enter-from-class="scale-y-0" enter-to-class="scale-y-100" leave-from-class="scale-y-100"
       leave-to-class="scale-y-0">
-      <div v-show="isDrawerOpen" class="drawer">
+      <ul v-show="isDrawerOpen" class="drawer">
         <div v-if="isDrawerOpen" ref="refDrawerItemHighlighter"
-          class="absolute font-bold pointer-events-none text-8xl text-zinc-500/10 tracking-0.5em uppercase animate__animated animate__zoomIn animate__faster"
+          class="absolute font-bold pointer-events-none text-8xl text-zinc-500/10 tracking-0.5em uppercase animate__animated animate__zoomIn"
           @animationend="($event.target as HTMLDivElement).classList.remove('animate__zoomIn')">
           {{ highlightedDrawerMenuText }}
         </div>
-        <router-link to="/" class="btn" @click="isDrawerOpen = false" @mouseover="onDrawerItemHover"
-          @vnode-mounted="registerDrawerItem">
-          Beranda
-        </router-link>
-        <router-link to="/tentang" class="btn" @click="isDrawerOpen = false" @mouseover="onDrawerItemHover"
-          @vnode-mounted="registerDrawerItem">
-          Tentang
-        </router-link>
-        <router-link to="/katalog" class="btn" @click="isDrawerOpen = false" @mouseover="onDrawerItemHover"
-          @vnode-mounted="registerDrawerItem">
-          Katalog
-        </router-link>
-        <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" class="btn" @mouseover="onDrawerItemHover">
-          Hubungi kami
-        </a>
-      </div>
+        <li>
+          <router-link :to="{name: 'Home'}" class="btn" @click="isDrawerOpen = false" @mouseover="onDrawerItemHover"
+            @vnode-mounted="registerDrawerItem">
+            Beranda
+          </router-link>
+        </li>
+        <li>
+          <router-link :to="{name: 'About'}" class="btn" @click="isDrawerOpen = false" @mouseover="onDrawerItemHover"
+            @vnode-mounted="registerDrawerItem">
+            Tentang
+          </router-link>
+        </li>
+        <li>
+          <router-link :to="{name: 'Catalogue'}" class="btn" @click="isDrawerOpen = false"
+            @mouseover="onDrawerItemHover" @vnode-mounted="registerDrawerItem">
+            Katalog
+          </router-link>
+        </li>
+        <li>
+          <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" class="btn" @mouseover="onDrawerItemHover">
+            Hubungi kami
+          </a>
+        </li>
+      </ul>
     </transition>
 
     <div class="flex lg:hidden">
@@ -39,9 +47,9 @@
     </div>
 
     <ul class="hidden lg:flex pl-6 pr-4 gap-4">
-      <router-link to="#" class="btn text-zinc-500">Beranda</router-link>
-      <router-link to="#" class="btn text-zinc-500">Tentang</router-link>
-      <router-link to="#" class="btn text-zinc-500">Katalog</router-link>
+      <router-link :to="{name: 'Home'}" class="btn">Beranda</router-link>
+      <router-link :to="{name: 'About'}" class="btn">Tentang</router-link>
+      <router-link :to="{name: 'Catalogue'}" class="btn">Katalog</router-link>
     </ul>
 
     <div class="flex lg:px-4 gap-4">
@@ -69,7 +77,7 @@ const { y } = useWindowScroll();
 const refDrawerItemHighlighter = ref<HTMLDivElement>();
 const highlightedDrawerMenuText = ref('');
 const [isDrawerOpen, toggleDrawer] = useToggle(false);
-const [showSearch, toggleSearch] = useToggle(false);
+// const [showSearch, toggleSearch] = useToggle(false);
 const onDrawerItemHover = (e: MouseEvent) => {
   highlightedDrawerMenuText.value = (e.currentTarget as HTMLElement).textContent || '';
 };
@@ -87,7 +95,7 @@ whenever(highlightedDrawerMenuText, () => {
 <style lang="sass" scoped>
 @layer components
   nav
-    @apply sticky top-0 bg-white p-4 flex justify-between items-center border-b border-zinc-100 shadow-sm transition-shadow
+    @apply sticky top-0 z-100 bg-white p-4 flex justify-between items-center border-b border-zinc-100 shadow-sm transition-shadow
 
     .btn
       @apply text-sm leading-5 px-0.75em py-0.25em
@@ -101,6 +109,13 @@ whenever(highlightedDrawerMenuText, () => {
         @apply w-6 h-6
         @screen lg
           @apply w-5 h-5
+
+    // will always point to large screen component
+    .hidden
+      .btn
+        @apply text-zinc-500
+        &.router-link-active
+          @apply font-semibold text-zinc-900
 
     #form_search
       @apply flex items-center gap-1

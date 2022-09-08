@@ -11,6 +11,7 @@
   "settings": {
     "conventionalCommits.scopes": [
       "web"
-    ]
+    ],
+    "unocss.root": "./web"
   }
 }

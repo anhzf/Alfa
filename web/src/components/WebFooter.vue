@@ -12,19 +12,19 @@
 
           <ul>
             <li>
-              <router-link to="#" class="btn item-label">
+              <router-link :to="{name: 'Home'}" class="btn item-label">
                 ↗ Beranda
               </router-link>
             </li>
 
             <li>
-              <router-link to="#" class="btn item-label">
+              <router-link :to="{name: 'About'}" class="btn item-label">
                 ↗ Tentang
               </router-link>
             </li>
 
             <li>
-              <router-link to="#" class="btn item-label">
+              <router-link :to="{name: 'Catalogue'}" class="btn item-label">
                 ↗ Katalog
               </router-link>
             </li>
@@ -74,8 +74,8 @@
             Alamat
           </h5>
 
-          <a href="https://goo.gl/maps/rRx9wBSGW5pSTcF2A" target="_blank" class="btn item-label -ml-2">
-            Jl . Jalan, No. 45, Kartasura, Jawa Selatan
+          <a href="https://goo.gl/maps/rRx9wBSGW5pSTcF2A" target="_blank" class="btn tracking-normal item-label -ml-2">
+            Jl. RS Fatmawati No. 17, Taman Kios, Pd. Labu, Blok B No. 28 B, Pondok Labu, Jakarta Selatan 12450
           </a>
         </section>
       </div>

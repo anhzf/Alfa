@@ -8,7 +8,11 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AlfastoreBrand: typeof import('./components/AlfastoreBrand.vue')['default']
+    ArrowSmRightIcon: typeof import('@heroicons/vue/24/solid')['ArrowSmRightIcon']
     Bars3CenterLeftIcon: typeof import('@heroicons/vue/24/solid')['Bars3CenterLeftIcon']
+    CardProduct: typeof import('./components/CardProduct.vue')['default']
+    ChevronLeftIcon: typeof import('@heroicons/vue/24/solid')['ChevronLeftIcon']
+    ChevronRightIcon: typeof import('@heroicons/vue/24/solid')['ChevronRightIcon']
     MagnifyingGlassIcon: typeof import('@heroicons/vue/24/solid')['MagnifyingGlassIcon']
     MdiFacebook: typeof import('./components/icons/MdiFacebook.vue')['default']
     MdiInstagram: typeof import('./components/icons/MdiInstagram.vue')['default']
@@ -16,6 +20,7 @@ declare module '@vue/runtime-core' {
     PhoneIcon: typeof import('@heroicons/vue/24/solid')['PhoneIcon']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    StarIcon: typeof import('@heroicons/vue/24/solid')['StarIcon']
     WebFooter: typeof import('./components/WebFooter.vue')['default']
     WebNavbar: typeof import('./components/WebNavbar.vue')['default']
     XMarkIcon: typeof import('@heroicons/vue/24/solid')['XMarkIcon']
