@@ -14,7 +14,7 @@ hr
 
 @layer components
   .btn
-    @apply relative px-2 py-1 text-zinc-900 font-medium rounded-md inline-flex items-center gap-2.5
+    @apply relative px-2 py-1 text-zinc-900 font-medium rounded-md inline-flex justify-center items-center gap-2.5 overlfow-hidden
     &:hover
       @apply bg-zinc-300/25
     &:active
@@ -32,9 +32,19 @@ hr
     &.btn--round
       @apply rounded-full aspect-ratio-square
 
+    &.btn--square
+      @apply rounded-none
+
     &.btn--sm
       @apply text-sm leading-5
 
     &[target="_blank"]::after
       content: ' ↗'
-      @apply absolute bottom-0 right-0 opacity-0 transition-opacity
+      @apply absolute inset-y-1/2 right-0 opacity-0 transition-opacity -translate-y-1/2
+
+  main section
+    @apply flex flex-col gap-3 px-2 py-8
+    h3
+      @apply text-lg text-zinc-900 font-bold leading-7
+      & + hr
+        @apply w-20 h-3px bg-zinc-900

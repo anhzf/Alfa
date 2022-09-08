@@ -53,8 +53,10 @@
     </ul>
 
     <div class="flex lg:px-4 gap-4">
-      <form id="form_search">
-        <input type="search" name="q" placeholder="cari sesuatu disini...">
+      <form id="form_search" @submit.prevent="onSearchSubmit">
+        <div class="field">
+          <input type="search" name="q" placeholder="cari sesuatu disini...">
+        </div>
         <button aria-label="search" type="submit" class="btn btn--round text-zinc-500">
           <MagnifyingGlassIcon class="icon" />
         </button>
@@ -71,9 +73,10 @@
 <script lang="ts" setup>
 import { useToggle, useWindowScroll, whenever } from '@vueuse/core';
 import { ref, VNode } from 'vue';
-import { _RouterLinkI } from 'vue-router';
+import { useRouter, _RouterLinkI } from 'vue-router';
 
 const { y } = useWindowScroll();
+const router = useRouter();
 const refDrawerItemHighlighter = ref<HTMLDivElement>();
 const highlightedDrawerMenuText = ref('');
 const [isDrawerOpen, toggleDrawer] = useToggle(false);
@@ -81,6 +84,11 @@ const [isDrawerOpen, toggleDrawer] = useToggle(false);
 const onDrawerItemHover = (e: MouseEvent) => {
   highlightedDrawerMenuText.value = (e.currentTarget as HTMLElement).textContent || '';
 };
+const onSearchSubmit = async (e: Event) => {
+  const form = e.currentTarget as HTMLFormElement;
+  await router.push({ name: 'Catalogue', query: { q: (form.elements.namedItem('q') as HTMLInputElement).value } })
+};
+
 const registerDrawerItem = (vn: VNode) => {
   if (!highlightedDrawerMenuText.value && (vn.el as HTMLDivElement).classList.contains('router-link-active')) {
     highlightedDrawerMenuText.value = (vn.el as HTMLDivElement).textContent || '';
@@ -115,17 +123,21 @@ whenever(highlightedDrawerMenuText, () => {
       .btn
         @apply text-zinc-500
         &.router-link-active
-          @apply font-semibold text-zinc-900
+          @apply font-semibold text-zinc-700
 
     #form_search
       @apply flex items-center gap-1
 
-      input[type=search]
-        @apply hidden text-sm text-zinc-700 border-b border-zinc-300 outline-none
-        @screen lg
-          @apply inline-block
-        &:focus
-          @apply border-zinc-700
+      .field
+        @apply px-3 py-1.5 flex items-center gap-1 rounded-full
+        input[type=search]
+          @apply hidden text-sm text-zinc-700 bg-transparent border-b border-zinc-300 outline-none
+          @screen lg
+            @apply inline-block
+        &:hover
+          @apply bg-zinc-200/60
+        &:focus-within
+          @apply bg-zinc-200/40
 
   .drawer
     height: calc(100vh - 100%)

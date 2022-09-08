@@ -7,6 +7,7 @@ specifiers:
   '@vitejs/plugin-vue': ^3.0.3
   '@vueuse/core': ^9.1.1
   '@vueuse/head': ^0.7.9
+  '@vueuse/router': ^9.2.0
   animate.css: ^4.1.1
   sass: ^1.54.8
   typescript: '>=4.4'
@@ -28,6 +29,7 @@ devDependencies:
   '@vitejs/plugin-vue': 3.0.3_vite@3.0.9+vue@3.2.38
   '@vueuse/core': 9.1.1_vue@3.2.38
   '@vueuse/head': 0.7.9_vue@3.2.38
+  '@vueuse/router': 9.2.0_4n526fuacxb7krhzh75jg7hrn4
   animate.css: 4.1.1
   sass: 1.54.8
   typescript: 4.8.2
@@ -494,8 +496,30 @@ packages:
     resolution: {integrity: sha512-XZ2KtSW+85LLHB/IdGILPAtbIVHasPsAW7aqz3BRMzJdAQWRiM/FGa1OKBwLbXtUw/AmjKYFlZJo7eOFIBXRog==}
     dev: true
 
+  /@vueuse/router/9.2.0_4n526fuacxb7krhzh75jg7hrn4:
+    resolution: {integrity: sha512-N80vwh6EGFJiUIyCbfGhEDHzolNvTEPzJBLTuwy7pJU91VjNotMsSvUhwEI8l/cBpdBaIL9dUxRqXDBVrQBahA==}
+    peerDependencies:
+      vue-router: '>=4.0.0-rc.1'
+    dependencies:
+      '@vueuse/shared': 9.2.0_vue@3.2.38
+      vue-demi: 0.13.11_vue@3.2.38
+      vue-router: 4.1.5_vue@3.2.38
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: true
+
   /@vueuse/shared/9.1.1_vue@3.2.38:
     resolution: {integrity: sha512-c+IfcOYmHiHqoEa3ED1Tbpue5GHmoUmTp8PtO4YbczthtY155Rt6DmWhjxMLXBF1Bcidagxljmp/7xtAzEHXLw==}
+    dependencies:
+      vue-demi: 0.13.11_vue@3.2.38
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: true
+
+  /@vueuse/shared/9.2.0_vue@3.2.38:
+    resolution: {integrity: sha512-NnRp/noSWuXW0dKhZK5D0YLrDi0nmZ18UeEgwXQq7Ul5TTP93lcNnKjrHtd68j2xFB/l59yPGFlCryL692bnrA==}
     dependencies:
       vue-demi: 0.13.11_vue@3.2.38
     transitivePeerDependencies:

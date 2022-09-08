@@ -7,9 +7,11 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AdjustmentsVerticalIcon: typeof import('@heroicons/vue/24/solid')['AdjustmentsVerticalIcon']
     AlfastoreBrand: typeof import('./components/AlfastoreBrand.vue')['default']
     ArrowSmRightIcon: typeof import('@heroicons/vue/24/solid')['ArrowSmRightIcon']
     Bars3CenterLeftIcon: typeof import('@heroicons/vue/24/solid')['Bars3CenterLeftIcon']
+    BarsArrowDownIcon: typeof import('@heroicons/vue/24/solid')['BarsArrowDownIcon']
     CardProduct: typeof import('./components/CardProduct.vue')['default']
     ChevronLeftIcon: typeof import('@heroicons/vue/24/solid')['ChevronLeftIcon']
     ChevronRightIcon: typeof import('@heroicons/vue/24/solid')['ChevronRightIcon']

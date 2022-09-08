@@ -1,5 +1,5 @@
 <template>
-  <router-link to="/" class="btn">
+  <router-link :to="{name: 'Home'}" class="btn">
     <component :is="tag" class="text-lg font-bold">
       Alfastore
     </component>

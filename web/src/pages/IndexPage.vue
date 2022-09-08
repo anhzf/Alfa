@@ -76,7 +76,7 @@
         </ul>
 
         <div class="flex gap-2 p-2">
-          <router-link to="/" class="btn text-sm text-zinc-700">
+          <router-link :to="{name: 'Catalogue', query: {sort: 'popular'}}" class="btn text-sm text-zinc-700">
             Lihat semua →
           </router-link>
         </div>
@@ -158,9 +158,5 @@ header
         @apply text-zinc-500 cursor-not-allowed
 
 main section
-  @apply flex flex-col items-center gap-3 px-2 py-8
-  h3
-    @apply text-lg text-zinc-900 font-bold leading-7
-    & + hr
-      @apply w-20 h-3px bg-zinc-900
+  @apply items-center
 </style>
