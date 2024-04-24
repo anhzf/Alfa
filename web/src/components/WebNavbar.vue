@@ -9,20 +9,20 @@
           {{ highlightedDrawerMenuText }}
         </div>
         <li>
-          <router-link :to="{name: 'Home'}" class="btn" @click="isDrawerOpen = false" @mouseover="onDrawerItemHover"
-            @vnode-mounted="registerDrawerItem">
+          <router-link :to="{ name: 'Home' }" class="btn" @click="isDrawerOpen = false" @mouseover="onDrawerItemHover"
+            @vue:mounted="registerDrawerItem">
             Beranda
           </router-link>
         </li>
         <li>
-          <router-link :to="{name: 'About'}" class="btn" @click="isDrawerOpen = false" @mouseover="onDrawerItemHover"
-            @vnode-mounted="registerDrawerItem">
+          <router-link :to="{ name: 'About' }" class="btn" @click="isDrawerOpen = false" @mouseover="onDrawerItemHover"
+            @vue:mounted="registerDrawerItem">
             Tentang
           </router-link>
         </li>
         <li>
-          <router-link :to="{name: 'Catalogue'}" class="btn" @click="isDrawerOpen = false"
-            @mouseover="onDrawerItemHover" @vnode-mounted="registerDrawerItem">
+          <router-link :to="{ name: 'Catalogue' }" class="btn" @click="isDrawerOpen = false"
+            @mouseover="onDrawerItemHover" @vue:mounted="registerDrawerItem">
             Katalog
           </router-link>
         </li>
@@ -47,9 +47,9 @@
     </div>
 
     <ul class="hidden lg:flex pl-6 pr-4 gap-4">
-      <router-link :to="{name: 'Home'}" class="btn">Beranda</router-link>
-      <router-link :to="{name: 'About'}" class="btn">Tentang</router-link>
-      <router-link :to="{name: 'Catalogue'}" class="btn">Katalog</router-link>
+      <router-link :to="{ name: 'Home' }" class="btn">Beranda</router-link>
+      <router-link :to="{ name: 'About' }" class="btn">Tentang</router-link>
+      <router-link :to="{ name: 'Catalogue' }" class="btn">Katalog</router-link>
     </ul>
 
     <div class="flex lg:px-4 gap-4">
@@ -72,7 +72,7 @@
 
 <script lang="ts" setup>
 import { useToggle, useWindowScroll, whenever } from '@vueuse/core';
-import { ref, VNode } from 'vue';
+import { ref, type VNode } from 'vue';
 import { useRouter, _RouterLinkI } from 'vue-router';
 
 const { y } = useWindowScroll();
