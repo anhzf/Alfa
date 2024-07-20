@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import 'animate.css';
+
+html {
+  @apply font-sans -tracking-[0.015em];
+}
+
+body {
+  @apply overflow-y-scroll;
+}
+
+hr {
+  @apply border-none;
+}
+
+
+@layer components {
+  .btn {
+    @apply relative px-2 py-1 text-zinc-900 font-medium rounded-md inline-flex justify-center items-center gap-2.5 overflow-hidden;
+    &:hover {
+      @apply bg-zinc-300/25;
+    }
+    &:active {
+      @apply bg-zinc-300/50;
+    }
+
+    &:hover,
+    &:active {
+      &[target="_blank"]::after {
+        @apply inline-block opacity-100;
+      }
+    }
+
+    &.btn--filled {
+      @apply bg-zinc-700 text-white rounded-none;
+      &:hover {
+        @apply bg-zinc-600;
+      }
+      &:active {
+        @apply bg-zinc-700;
+      }
+    }
+
+    &.btn--round {
+      @apply rounded-full aspect-square;
+    }
+
+    &.btn--square {
+      @apply rounded-none;
+    }
+
+    &.btn--sm {
+      @apply text-sm leading-5;
+    }
+  }
+
+  a:not(.no-link-arrow, .btn)[target="_blank"]::after {
+    content: ' ↗';
+    @apply inset-y-1/2 right-0 opacity-0 transition-opacity -translate-y-1/2;
+  }
+
+  main section {
+    @apply flex flex-col gap-3 px-2 py-8;
+    h3 {
+      @apply text-lg text-zinc-900 font-bold leading-7;
+      & + hr {
+        @apply w-20 h-[3px] bg-zinc-900;
+      }
+    }
+  }
+}
