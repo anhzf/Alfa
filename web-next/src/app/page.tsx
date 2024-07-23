@@ -1,6 +1,7 @@
 import ProductCard from '@/components/product-card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
+import { ChevronLeftIcon, ChevronRightIcon, PrinterIcon, ShieldCheckIcon } from '@heroicons/react/24/solid';
+import { PackageOpenIcon, PencilRulerIcon, ShirtIcon } from 'lucide-react';
 import Link from 'next/link';
 
 const Carousel = () => (
@@ -98,34 +99,44 @@ export default function Home() {
               {
                 title: 'Pengadaan Barang',
                 url: '#',
+                icon: PackageOpenIcon,
                 desc: 'Kami menyediakan berbagai macam peralatan kantor, mulai dari alat tulis, furnitur, hingga perangkat IT, dengan kualitas terbaik.',
               },
               {
                 title: 'Percetakan',
                 url: '#',
+                icon: PrinterIcon,
                 desc: 'Layanan percetakan kami mencakup segala kebutuhan Anda, dari kartu nama, poster, company profile, hingga brosur berkualitas tinggi.',
               },
               {
                 title: 'Merchandise',
                 url: '#',
+                icon: ShirtIcon,
                 desc: 'Kami memproduksi berbagai merchandise unik seperti kaos, topi, payung, dan bermacam-macam yang dapat disesuaikan dengan brand Anda.',
               },
               {
                 title: 'Alat Kantor',
                 url: '#',
+                icon: PencilRulerIcon,
                 desc: 'Lengkapi kantor Anda dengan peralatan canggih seperti brankas, lemari file, dan paper shredder.',
               },
               {
                 title: 'Solusi Keamanan',
                 url: '#',
+                icon: ShieldCheckIcon,
                 desc: 'Lindungi bisnis Anda dengan sistem keamanan canggih seperti pemindai bagasi X-ray untuk inspeksi menyeluruh.',
               },
-            ].map(({ title, url, desc }) => (
+            ].map(({ title, url, desc, icon: Icon }) => (
               <li key={title} className="shrink-0">
                 <Link key={title} href={url} className="group flex flex-wrap gap-3 hover:bg-zinc-100 active:bg-zinc-200 px-4 py-5 border rounded-md">
-                  <h6 className="text-2xl font-medium text-zinc-900 w-[20ch]">
-                    {title}
-                  </h6>
+                  <div className="flex items-center gap-3">
+                    <div className="size-9 flex justify-center items-center bg-emerald-400/80 rounded-full">
+                      <Icon className="size-6 text-white" />
+                    </div>
+                    <h6 className="text-2xl font-medium text-emerald-900 w-[20ch]">
+                      {title}
+                    </h6>
+                  </div>
 
                   <div className="flex-auto flex gap-2">
                     <p className="grow text-zinc-700 max-w-prose">
@@ -148,48 +159,34 @@ export default function Home() {
           <hr className="w-20 h-[3px] bg-zinc-900" />
 
           <Tabs defaultValue="populer" className="w-full flex flex-col items-center px-2 lg:px-12 py-4">
-            <TabsList>
-              <TabsTrigger value="populer">Paling laris</TabsTrigger>
-              <TabsTrigger value="atk">ATK</TabsTrigger>
-              <TabsTrigger value="furnitur">Furnitur</TabsTrigger>
-              <TabsTrigger value="elektronik">Elektronik</TabsTrigger>
-              <TabsTrigger value="it">IT</TabsTrigger>
+            <TabsList className="w-full max-w-screen-lg justify-start lg:justify-center overflow-y-hidden overflow-x-auto">
+              {[
+                { title: 'Paling laris', name: 'populer' },
+                { title: 'ATK', name: 'atk' },
+                { title: 'Furnitur', name: 'furnitur' },
+                { title: 'Elektronik', name: 'elektronik' },
+                { title: 'IT', name: 'it' },
+              ].map(({ title, name }) => (
+                <TabsTrigger key={name} value={name} className="grow shrink-0 min-w-20">
+                  {title}
+                </TabsTrigger>
+              ))}
             </TabsList>
-            <TabsContent value="populer" className="w-full overflow-y-hidden overflow-x-auto p-2">
-              <ul className="flex lg:justify-center gap-4">
-                {Array.from({ length: 5 }, (_, i) => (
-                  <ProductCard key={i} className="shrink-0 animate__animated animate__fadeInUp" style={{ animationDelay: `${i * 25}ms` }} />
-                ))}
-              </ul>
-            </TabsContent>
-            <TabsContent value="atk" className="w-full overflow-y-hidden overflow-x-auto p-2">
-              <ul className="flex lg:justify-center gap-4">
-                {Array.from({ length: 5 }, (_, i) => (
-                  <ProductCard key={i} className="shrink-0 animate__animated animate__fadeInUp" style={{ animationDelay: `${i * 25}ms` }} />
-                ))}
-              </ul>
-            </TabsContent>
-            <TabsContent value="furnitur" className="w-full overflow-y-hidden overflow-x-auto p-2">
-              <ul className="flex lg:justify-center gap-4">
-                {Array.from({ length: 5 }, (_, i) => (
-                  <ProductCard key={i} className="shrink-0 animate__animated animate__fadeInUp" style={{ animationDelay: `${i * 25}ms` }} />
-                ))}
-              </ul>
-            </TabsContent>
-            <TabsContent value="elektronik" className="w-full overflow-y-hidden overflow-x-auto p-2">
-              <ul className="flex lg:justify-center gap-4">
-                {Array.from({ length: 5 }, (_, i) => (
-                  <ProductCard key={i} className="shrink-0 animate__animated animate__fadeInUp" style={{ animationDelay: `${i * 25}ms` }} />
-                ))}
-              </ul>
-            </TabsContent>
-            <TabsContent value="it" className="w-full overflow-y-hidden overflow-x-auto p-2">
-              <ul className="flex lg:justify-center gap-4">
-                {Array.from({ length: 5 }, (_, i) => (
-                  <ProductCard key={i} className="shrink-0 animate__animated animate__fadeInUp" style={{ animationDelay: `${i * 25}ms` }} />
-                ))}
-              </ul>
-            </TabsContent>
+            {[
+              'populer',
+              'atk',
+              'furnitur',
+              'elektronik',
+              'it',
+            ].map((category) => (
+              <TabsContent key={category} value={category} className="w-full overflow-y-hidden overflow-x-auto p-2">
+                <ul className="flex gap-4">
+                  {Array.from({ length: 5 }, (_, i) => (
+                    <ProductCard key={i} className="shrink-0 animate__animated animate__fadeInUp" style={{ animationDelay: `${i * 25}ms` }} />
+                  ))}
+                </ul>
+              </TabsContent>
+            ))}
           </Tabs>
 
           <div className="flex gap-2 p-2">
