@@ -6,11 +6,15 @@
     },
     {
       "path": "./web",
+    },
+    {
+      "path": "./web-next",
     }
   ],
   "settings": {
     "conventionalCommits.scopes": [
-      "web"
+      "web",
+      "web-next"
     ],
     "unocss.root": "./web"
   }
