@@ -7,6 +7,8 @@ import Link from 'next/link';
 const Carousel = () => (
   <header className="self-center relative h-[80svh] w-full text-white overflow-hidden">
     <img src="/hero-slides1_1.png" className="absolute w-full max-w-screen h-full object-cover blur" />
+    {/* <img src="/hero-slides1_1.png" className="absolute w-full max-w-screen h-full object-cover " />
+    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(196,196,196,0)_20.51%,rgba(39,39,42,0.7)_64.84%,#171717_100%)]" /> */}
 
     <div className="relative flex flex-col w-full h-full max-w-screen-xl mx-auto">
       <img src="/hero-slides1_1.png" className="absolute w-full h-full object-cover blur-lg" />
@@ -161,7 +163,7 @@ export default function Home() {
           <Tabs defaultValue="populer" className="w-full flex flex-col items-center px-2 lg:px-12 py-4">
             <TabsList className="w-full max-w-screen-lg justify-start lg:justify-center overflow-y-hidden overflow-x-auto">
               {[
-                { title: 'Paling laris', name: 'populer' },
+                { title: 'Paling populer', name: 'populer' },
                 { title: 'ATK', name: 'atk' },
                 { title: 'Furnitur', name: 'furnitur' },
                 { title: 'Elektronik', name: 'elektronik' },
@@ -179,10 +181,13 @@ export default function Home() {
               'elektronik',
               'it',
             ].map((category) => (
-              <TabsContent key={category} value={category} className="w-full overflow-y-hidden overflow-x-auto p-2">
-                <ul className="flex gap-4">
-                  {Array.from({ length: 5 }, (_, i) => (
-                    <ProductCard key={i} className="shrink-0 animate__animated animate__fadeInUp" style={{ animationDelay: `${i * 25}ms` }} />
+              <TabsContent key={category} value={category} className="w-full overflow-hidden p-2 max-w-screen-2xl">
+                {/* 16.625 from ProductCard */}
+                <ul className="grid grid-cols-[repeat(auto-fill,16.625rem)] justify-center gap-4">
+                  {Array.from({ length: 8 }, (_, i) => (
+                    <li key={i}>
+                      <ProductCard className="shrink-0 animate__animated animate__fadeInUp" style={{ animationDelay: `${i * 25}ms` }} />
+                    </li>
                   ))}
                 </ul>
               </TabsContent>
