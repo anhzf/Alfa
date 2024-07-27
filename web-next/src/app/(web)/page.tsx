@@ -4,7 +4,7 @@ import { ChevronLeftIcon, ChevronRightIcon, PrinterIcon, ShieldCheckIcon } from 
 import { PackageOpenIcon, PencilRulerIcon, ShirtIcon } from 'lucide-react';
 import Link from 'next/link';
 
-const Carousel = () => (
+const WebSectionHero = () => (
   <header className="self-center relative h-[80svh] w-full text-white overflow-hidden">
     <img src="/hero-slides1_1.png" className="absolute w-full max-w-screen h-full object-cover blur" />
     {/* <img src="/hero-slides1_1.png" className="absolute w-full max-w-screen h-full object-cover " />
@@ -55,7 +55,7 @@ const Carousel = () => (
 export default function Home() {
   return (
     <div className="flex-[1_0] flex flex-col">
-      <Carousel />
+      <WebSectionHero />
 
       <main>
         <section className="flex flex-col items-center gap-3 px-2 bg-white">
@@ -183,7 +183,7 @@ export default function Home() {
             ].map((category) => (
               <TabsContent key={category} value={category} className="w-full overflow-hidden p-2 max-w-screen-2xl">
                 {/* 16.625 from ProductCard */}
-                <ul className="grid grid-cols-[repeat(auto-fill,16.625rem)] justify-center gap-4">
+                <ul className="grid grid-cols-[repeat(auto-fit,16.625rem)] justify-center gap-4">
                   {Array.from({ length: 8 }, (_, i) => (
                     <li key={i}>
                       <ProductCard className="shrink-0 animate__animated animate__fadeInUp" style={{ animationDelay: `${i * 25}ms` }} />

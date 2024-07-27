@@ -123,10 +123,14 @@ export interface Category {
 export interface Product {
   id: string;
   title: string;
-  description?: string | null;
-  categories?: (string | null) | Category;
+  description?:
+    | {
+        [k: string]: unknown;
+      }[]
+    | null;
+  category?: (string | null) | Category;
   images?: (string | Media)[] | null;
-  price?: number | null;
+  price: number;
   updatedAt: string;
   createdAt: string;
 }

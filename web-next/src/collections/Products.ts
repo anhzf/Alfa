@@ -17,12 +17,12 @@ const Products: CollectionConfig = {
     {
       name: 'description',
       label: 'Description',
-      type: 'textarea',
+      type: 'richText',
       required: false,
     },
     {
-      name: 'categories',
-      label: 'Categories',
+      name: 'category',
+      label: 'Category',
       type: 'relationship',
       relationTo: Categories.slug as CollectionSlug,
     },
@@ -35,9 +35,15 @@ const Products: CollectionConfig = {
     },
     {
       name: 'price',
-      label: 'Price',
+      label: 'Price (IDR)',
       type: 'number',
-    }
+      required: true,
+    },
+    // {
+    //   name: 'slug',
+    //   label: 'Slug',
+    //   type: 'text',
+    // },
   ],
 };
 
