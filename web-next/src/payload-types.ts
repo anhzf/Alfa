@@ -13,7 +13,7 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
-    pages: Page;
+    settings: Setting;
     categories: Category;
     products: Product;
     'payload-preferences': PayloadPreference;
