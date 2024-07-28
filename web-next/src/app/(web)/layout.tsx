@@ -1,9 +1,10 @@
 import WebFooter from '@/components/web-footer';
 import WebNavbar from '@/components/web-navbar';
+import { cn } from '@/utils/ui';
 import type { Metadata } from "next";
 import { Source_Sans_3 } from "next/font/google";
+
 import "./globals.css";
-import { cn } from '@/utils/ui';
 
 const sourceSans = Source_Sans_3({
   subsets: ["latin-ext"],
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
   title: "Alfa Cipta Mukti",
   description: "Usaha berbasis Jakarta Selatan yang menyediakan berbagai jasa penyediaan barang untuk kebutuhan perusahaan dan kantor.",
 };
+
 
 export default function RootLayout({
   children,

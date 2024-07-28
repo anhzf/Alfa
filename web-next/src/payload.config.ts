@@ -20,7 +20,7 @@ const config = buildConfig({
   admin: {
     user: Users.slug,
   },
-  collections: [Users, Media, Pages, Categories, Products],
+  collections: [Users, Media, Settings, Categories, Products],
   editor: slateEditor({}),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

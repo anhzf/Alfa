@@ -3,6 +3,35 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ChevronLeftIcon, ChevronRightIcon, PrinterIcon, ShieldCheckIcon } from '@heroicons/react/24/solid';
 import { PackageOpenIcon, PencilRulerIcon, ShirtIcon } from 'lucide-react';
 import Link from 'next/link';
+import ClientsCarousel, { type Client } from './clients-carousel';
+
+const clients: Client[] = [
+  {
+    title: 'Pertamina',
+    img: '/contents/section_clients_fake-brand1.png',
+    url: 'https://pertamina.com',
+  },
+  {
+    title: 'Tokopedia',
+    img: '/contents/section_clients_fake-brand2.png',
+  },
+  {
+    title: 'BUMN',
+    img: '/contents/section_clients_fake-brand3.svg',
+  },
+  {
+    title: 'Pertagiga',
+    img: '/contents/section_clients_fake-brand1.png',
+  },
+  {
+    title: 'Pertamini',
+    img: '/contents/section_clients_fake-brand1.png',
+  },
+  {
+    title: 'Pertaniga',
+    img: '/contents/section_clients_fake-brand1.png',
+  },
+];
 
 const WebSectionHero = () => (
   <header className="self-center relative h-[80svh] w-full text-white overflow-hidden">
@@ -52,7 +81,7 @@ const WebSectionHero = () => (
   </header>
 );
 
-export default function Home() {
+export default async function Home() {
   return (
     <div className="flex-[1_0] flex flex-col">
       <WebSectionHero />
@@ -63,30 +92,7 @@ export default function Home() {
             Klien kami
           </h3>
 
-          <div className="flex lg:justify-center items-center flex-nowrap gap-12 lg:gap-20 py-4 w-full max-w-screen-lg overflow-x-auto">
-            {[
-              {
-                title: 'Pertamina',
-                img: '/contents/section_clients_fake-brand1.png',
-                url: '#',
-              },
-              {
-                title: 'Tokopedia',
-                img: '/contents/section_clients_fake-brand2.png',
-                url: '#',
-              },
-              {
-                title: 'BUMN',
-                img: '/contents/section_clients_fake-brand3.svg',
-                url: '#',
-              },
-            ].map(({ title, img, url }) => (
-              <Link key={title} href={url} target="_blank"
-                className="shrink-0 size-[7.5rem] lg:size-40 hover:bg-zinc-300/25 active:bg-zinc-300/50 flex flex-col justify-center items-center">
-                <img src={img} alt={title} className="object-contain" />
-              </Link>
-            ))}
-          </div>
+          <ClientsCarousel clients={clients} />
         </section>
 
         <section className="flex flex-col items-center gap-3 px-2 py-8 bg-zinc-50">
@@ -212,8 +218,12 @@ export default function Home() {
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d991.4242826384494!2d106.79412792919918!3d-6.303466899714855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ee1f646ec7f3%3A0x4eb7085df5c42fc2!2sJl.%20RS.%20Fatmawati%20Raya%20No.1%2C%20RT.9%2FRW.7%2C%20Pd.%20Labu%2C%20Kec.%20Cilandak%2C%20Kota%20Jakarta%20Selatan%2C%20Daerah%20Khusus%20Ibukota%20Jakarta%2012450!5e0!3m2!1sen!2sid!4v1662602771036!5m2!1sen!2sid"
               width={600} height={450}
-              style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"
-              className="w-full h-[60vh]">
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="w-full h-[60vh]"
+            >
               Google Maps
             </iframe>
           </div>
