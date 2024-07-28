@@ -154,7 +154,20 @@ export default async function ProdukPage({ params }: { params: { produk: string 
         <ul className="grid grid-cols-[repeat(auto-fit,theme(size.40))] justify-center gap-4 w-full overflow-hidden p-2 max-w-screen-2xl">
           {Array.from({ length: 5 }, (_, i) => (
             <li key={i}>
-              <ProductCard dense className="shrink-0 animate__animated animate__fadeInUp" style={{ animationDelay: `${i * 25}ms` }} />
+              <ProductCard
+                data={{
+                  id: i.toString(),
+                  title: 'Meja Ergonomis',
+                  img: '/contents/products_popular1.png',
+                  review: {
+                    stars: 4,
+                    count: 10,
+                  },
+                }}
+                dense
+                className="shrink-0 animate__animated animate__fadeInUp"
+                style={{ animationDelay: `${i * 25}ms` }}
+              />
             </li>
           ))}
         </ul>

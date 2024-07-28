@@ -192,7 +192,19 @@ export default async function Home() {
                 <ul className="grid grid-cols-[repeat(auto-fit,16.625rem)] justify-center gap-4">
                   {Array.from({ length: 8 }, (_, i) => (
                     <li key={i}>
-                      <ProductCard className="shrink-0 animate__animated animate__fadeInUp" style={{ animationDelay: `${i * 25}ms` }} />
+                      <ProductCard
+                        data={{
+                          id: i.toString(),
+                          title: 'Meja Ergonomis',
+                          img: '/contents/products_popular1.png',
+                          review: {
+                            stars: 4,
+                            count: 10,
+                          },
+                        }}
+                        className="shrink-0 animate__animated animate__fadeInUp"
+                        style={{ animationDelay: `${i * 25}ms` }}
+                      />
                     </li>
                   ))}
                 </ul>

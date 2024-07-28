@@ -7,15 +7,17 @@ export default async function KatalogPage() {
   const result = await payload.find({ collection: 'products' });
 
   return (
-    <ul>
-      {result.docs.map((product) => (
-        <li key={product.id}>
-          <h1>{product.title}</h1>
-          <p>{String(product.description)}</p>
-          <p>{product.price}</p>
-          <Link href={`/katalog/produk/${product.id}`}>Lihat detail</Link>
-        </li>
-      ))}
-    </ul>
+    <main className="flex-1">
+      <ul>
+        {result.docs.map((product) => (
+          <li key={product.id}>
+            <h1>{product.title}</h1>
+            <p>{String(product.description)}</p>
+            <p>{product.price}</p>
+            <Link href={`/katalog/produk/${product.id}`}>Lihat detail</Link>
+          </li>
+        ))}
+      </ul>
+    </main>
   );
 }
