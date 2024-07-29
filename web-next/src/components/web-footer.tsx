@@ -1,9 +1,13 @@
 import Brand from '@/components/brand';
-import { MdiFacebook } from '@/components/icons/mdi-facebook';
-import { MdiInstagram } from '@/components/icons/mdi-instagram';
-import { MdiWhatsapp } from '@/components/icons/mdi-whatsapp';
 import Separator from '@/components/ui/separator';
+import { CONTACTS, LOCATION } from '@/contents';
 import Link from 'next/link';
+
+const navigations = [
+  { title: 'Beranda', href: '/' },
+  { title: 'Tentang', href: '/tentang' },
+  { title: 'Katalog', href: '/katalog' },
+];
 
 export default function WebFooter() {
   return (
@@ -22,11 +26,7 @@ export default function WebFooter() {
             <h5 className="text-zinc-300 text-xs leading-4 font-bold">Navigasi</h5>
 
             <ul className="list-none text-white flex flex-col gap-2 [&_.btn]:-ml-2">
-              {[
-                { title: 'Beranda', href: '/' },
-                { title: 'Tentang', href: '/tentang' },
-                { title: 'Katalog', href: '/katalog' },
-              ].map(({ title, href }) => (
+              {navigations.map(({ title, href }) => (
                 <li key={title}>
                   <Link href={href} className="btn text-base lg:text-sm text-white leading-6 font-semibold">
                     ↗ {title}
@@ -42,18 +42,14 @@ export default function WebFooter() {
             </h5>
 
             <ul className="list-none text-white flex flex-col gap-2 [&_.btn]:-ml-2">
-              {[
-                { title: 'Instagram', href: 'https://instagram.com', icon: MdiInstagram },
-                { title: 'Facebook', href: 'https://facebook.com', icon: MdiFacebook },
-                { title: 'WhatsApp', href: 'https://wa.me/', icon: MdiWhatsapp },
-              ].map(({ title, href, icon: Icon }) => (
-                <li key={title} className="social-item">
-                  <a href={href} className="btn">
-                    <div className="mr-1.5">
-                      <Icon className="size-5 text-white" />
-                    </div>
+              {Object.entries(CONTACTS).map(([name, { title, href, icon: Icon }]) => (
+                <li key={name}>
+                  <a href={href} target="_blank" className="btn">
+                    <Icon className="size-5 text-white mr-1.5" />
 
-                    <span className="text-base lg:text-sm text-white leading-6 font-semibold">ACM</span>
+                    <span className="text-base lg:text-sm text-white leading-6 font-semibold">
+                      {title}
+                    </span>
                   </a>
                 </li>
               ))}
@@ -65,8 +61,8 @@ export default function WebFooter() {
               Alamat
             </h5>
 
-            <a href="https://goo.gl/maps/rRx9wBSGW5pSTcF2A" target="_blank" className="btn tracking-normal text-base lg:text-sm text-white leading-6 font-semibold -ml-2">
-              Jl. RS Fatmawati No. 17, Taman Kios, Pd. Labu, Blok B No. 28 B, Pondok Labu, Jakarta Selatan 12450
+            <a href={LOCATION.url} target="_blank" className="btn tracking-normal text-base lg:text-sm text-white leading-6 font-semibold -ml-2">
+              {LOCATION.address}
             </a>
           </section>
         </div>

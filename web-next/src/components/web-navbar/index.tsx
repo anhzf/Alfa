@@ -2,21 +2,22 @@
 
 import Brand from '@/components/brand';
 import NavbarSearch from '@/components/web-navbar/search';
+import { CONTACTS } from '@/contents';
 import { cn } from '@/utils/ui';
+import { Transition } from '@headlessui/react';
 import { Bars3CenterLeftIcon, PhoneIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
-import { Transition } from '@headlessui/react';
 import { useState } from 'react';
+
+const menus = [
+  { title: 'Beranda', href: '/' },
+  { title: 'Tentang', href: '/tentang' },
+  { title: 'Katalog', href: '/katalog' },
+];
 
 export default function WebNavbar() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [highlightedDrawerMenuText, setHighlightedDrawerMenuText] = useState('Home');
-
-  const menus = [
-    { title: 'Beranda', href: '/' },
-    { title: 'Tentang', href: '/tentang' },
-    { title: 'Katalog', href: '/katalog' },
-  ];
 
   return (
     <nav className="sticky top-0 z-10 bg-white p-4 flex justify-between items-center border-b border-zinc-100 shadow-sm transition-shadow">
@@ -39,7 +40,12 @@ export default function WebNavbar() {
           ))}
 
           <li>
-            <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" className="btn text-zinc-700 text-lg uppercase tracking-[0.3em] transition-all">
+            <a
+              href={CONTACTS.whatsapp.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn text-zinc-700 text-lg uppercase tracking-[0.3em] transition-all"
+            >
               Hubungi kami
             </a>
           </li>
@@ -71,7 +77,12 @@ export default function WebNavbar() {
       <div className="flex lg:px-4 gap-4">
         <NavbarSearch />
 
-        <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" className="hidden lg:flex btn btn--filled">
+        <a
+          href={CONTACTS.whatsapp.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden lg:flex btn btn--filled"
+        >
           <PhoneIcon className="size-4" />
           <span>Hubungi kami</span>
         </a>
