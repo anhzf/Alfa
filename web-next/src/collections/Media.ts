@@ -1,7 +1,9 @@
+import { withDbPrefix } from '@/utils/cms';
 import type { CollectionConfig } from 'payload'
 
 export const Media: CollectionConfig = {
   slug: 'media',
+  dbName: withDbPrefix('media'),
   access: {
     read: () => true,
   },

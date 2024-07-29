@@ -1,5 +1,4 @@
-// storage-adapter-import-placeholder
-import { mongooseAdapter } from '@payloadcms/db-mongodb';
+import { postgresAdapter } from '@payloadcms/db-postgres';
 import { slateEditor } from '@payloadcms/richtext-slate';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import path from 'path';
@@ -9,7 +8,7 @@ import { fileURLToPath } from 'url';
 
 import Categories from './collections/Categories';
 import Media from './collections/Media';
-import Pages from './collections/Pages';
+import Settings from './collections/Settings';
 import Products from './collections/Products';
 import Users from './collections/Users';
 
@@ -26,8 +25,10 @@ const config = buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
-  db: mongooseAdapter({
-    url: process.env.DATABASE_URI || '',
+  db: postgresAdapter({
+    pool: {
+      connectionString: process.env.POSTGRES_URL,
+    },
   }),
   sharp,
   plugins: [
@@ -35,10 +36,9 @@ const config = buildConfig({
       enabled: true, // Optional, defaults to true
       // Specify which collections should use Vercel Blob
       collections: {
-        [Media.slug]: true,
-        // [MediaWithPrefix.slug]: {
-        //   prefix: 'my-prefix',
-        // },
+        [Media.slug]: {
+          prefix: 'media',
+        },
       },
       // Token provided by Vercel once Blob storage is added to your Vercel project
       token: process.env.BLOB_READ_WRITE_TOKEN!,

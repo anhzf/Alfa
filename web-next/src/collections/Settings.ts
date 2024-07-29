@@ -1,7 +1,9 @@
+import { withDbPrefix } from '@/utils/cms';
 import type { CollectionConfig } from 'payload';
 
 const Pages: CollectionConfig = {
   slug: 'settings',
+  dbName: withDbPrefix('settings'),
   admin: {
     useAsTitle: 'key',
   },
