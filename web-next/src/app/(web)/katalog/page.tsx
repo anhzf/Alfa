@@ -8,13 +8,14 @@ export default async function KatalogPage() {
 
   return (
     <main className="flex-1">
-      <ul>
+      <ul className="container grid grid-cols-5 gap-4">
         {result.docs.map((product) => (
-          <li key={product.id}>
+          <li key={product.id} className="border rounded flex flex-col overflow-hidden">
             <h1>{product.title}</h1>
-            <p>{String(product.description)}</p>
-            <p>{product.price}</p>
-            <Link href={`/katalog/produk/${product.id}`}>Lihat detail</Link>
+            <pre>{JSON.stringify(product)}</pre>
+            <Link href={`/katalog/produk/${product.id}`} className="btn">
+              Lihat detail
+            </Link>
           </li>
         ))}
       </ul>

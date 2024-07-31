@@ -31,9 +31,17 @@ const Products: CollectionConfig = {
     {
       name: 'images',
       label: 'Images',
-      type: 'relationship',
-      relationTo: Media.slug as CollectionSlug,
-      hasMany: true,
+      type: 'array',
+      fields: [
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: Media.slug as CollectionSlug,
+          filterOptions: {
+            mimeType: { contains: 'image' },
+          },
+        },
+      ],
     },
     {
       name: 'price',
@@ -41,11 +49,28 @@ const Products: CollectionConfig = {
       type: 'number',
       required: true,
     },
-    // {
-    //   name: 'slug',
-    //   label: 'Slug',
-    //   type: 'text',
-    // },
+    {
+      name: 'specs',
+      label: 'Spesifikasi',
+      type: 'array',
+      fields: [
+        {
+          type: 'row',
+          fields: [
+            {
+              name: 'name',
+              label: 'Nama',
+              type: 'text',
+            },
+            {
+              name: 'value',
+              label: 'Nilai',
+              type: 'text',
+            },
+          ],
+        },
+      ],
+    },
   ],
 };
 

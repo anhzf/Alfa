@@ -1,8 +1,11 @@
+import { MdiWhatsapp } from '@/components/icons/mdi-whatsapp';
 import ProductCard from '@/components/product-card';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
 import Separator from '@/components/ui/separator';
+import { CONTACTS } from '@/contents';
+import type { Category, Media } from '@/payload-types';
 import { toNextError } from '@/utils/error';
-import { ChevronLeftIcon, ChevronRightIcon, StarIcon } from '@heroicons/react/24/solid';
+import { StarIcon } from '@heroicons/react/24/solid';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
 import Link from 'next/link';
@@ -28,12 +31,24 @@ export default async function ProdukPage({ params }: { params: { produk: string 
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
-                <Link href="/katalog">Katalog</Link>
+                <Link href="/katalog">
+                  Katalog
+                </Link>
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage>{product.title}</BreadcrumbPage>
+              <Link href={`/katalog?category=${(product.category as Category).id}`}>
+                {((product.category as Category)).title}
+              </Link>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>
+                <Link href={`/katalog/produk/${product.id}`}>
+                  {product.title}
+                </Link>
+              </BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
@@ -89,6 +104,15 @@ export default async function ProdukPage({ params }: { params: { produk: string 
                 <span className="text-sm text-gray-500">201 Ulasan</span>
               </div>
             </div>
+
+            <a
+              href={CONTACTS.whatsapp.href}
+              target="_blank"
+              className="btn btn--filled !bg-[#0cc143] hover:!bg-[#0cc143]/80 active:!bg-[#0cc143]/90"
+            >
+              <MdiWhatsapp className="size-6" />
+              Pesan Sekarang
+            </a>
           </div>
 
           <Separator className="h-px" />
@@ -100,8 +124,9 @@ export default async function ProdukPage({ params }: { params: { produk: string 
               </h2>
 
               <div className="text-gray-600 prose prose-gray lg:prose-lg">
-                <p>Meja keren diimpor langsung dari desa Konoha, Kutub Utara. Didesain langsung oleh CEO dari perusahaan raksasa microsoft menjadikan anda tercengang sampai terbahak-bahak.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus cursus tincidunt mi eu sapien fringilla purus ultrices. Faucibus volutpat adipiscing amet commodo faucibus sit. Velit adipiscing placerat morbi quis consequat dictum nisl enim, consequat. Id et vel, ipsum blandit libero eleifend. Quis lectus dapibus sit facilisi consequat, tortor, ipsum.</p>
+                {JSON.stringify(product.description)}
+                {/* <p>Meja keren diimpor langsung dari desa Konoha, Kutub Utara. Didesain langsung oleh CEO dari perusahaan raksasa microsoft menjadikan anda tercengang sampai terbahak-bahak.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus cursus tincidunt mi eu sapien fringilla purus ultrices. Faucibus volutpat adipiscing amet commodo faucibus sit. Velit adipiscing placerat morbi quis consequat dictum nisl enim, consequat. Id et vel, ipsum blandit libero eleifend. Quis lectus dapibus sit facilisi consequat, tortor, ipsum.</p> */}
               </div>
             </div>
 
@@ -112,17 +137,14 @@ export default async function ProdukPage({ params }: { params: { produk: string 
 
               <div className="lg:text-lg text-gray-600">
                 <table className="[&_th]:w-[12ch] [&_th]:text-gray-500 [&_th]:text-left [&_th]:font-normal [&_td]:text-gray-600">
-                  {Object.entries({
-                    'Stok': 'Tersedia',
-                    'Varian': 'Coklat, Putih, Biru',
-                    'Ukuran': '150cm x 80cm',
-                    'Berat': '4500gr',
-                  }).map(([key, value]) => (
-                    <tr key={key}>
-                      <th>{key}</th>
-                      <td>{value}</td>
-                    </tr>
-                  ))}
+                  <tbody>
+                    {(product.specs || []).map(({ id, name, value }) => (
+                      <tr key={id}>
+                        <th>{name}</th>
+                        <td>{value}</td>
+                      </tr>
+                    ))}
+                  </tbody>
                 </table>
               </div>
             </div>

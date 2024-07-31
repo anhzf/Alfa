@@ -14,7 +14,27 @@ export const Media: CollectionConfig = {
       required: true,
     },
   ],
-  upload: true,
+  upload: {
+    imageSizes: [
+      {
+        name: 'sm',
+        width: 200,
+      },
+      {
+        name: 'md',
+        width: 480,
+      },
+      {
+        name: 'lg',
+        width: 1024,
+      },
+      {
+        name: 'xl',
+        width: 1600,
+      },
+    ],
+    adminThumbnail: 'sm',
+  },
 };
 
 export default Media;
