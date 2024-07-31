@@ -152,7 +152,7 @@ export default async function Home() {
                           count: 10,
                         },
                       }}
-                      className="shrink-0 animate__animated animate__fadeInUp"
+                      className="shrink-0 animate-in fade-in slide-in-from-bottom duration-700"
                       style={{ animationDelay: `${i * 25}ms` }}
                     />
                   </li>
@@ -176,7 +176,7 @@ export default async function Home() {
                             count: 10,
                           },
                         }}
-                        className="shrink-0 animate__animated animate__fadeInUp"
+                        className="shrink-0 animate-in fade-in slide-in-from-bottom duration-700"
                         style={{ animationDelay: `${i * 25}ms` }}
                       />
                     </li>

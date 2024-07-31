@@ -216,7 +216,7 @@ export default async function ProdukPage({ params }: { params: { produk: string 
                   },
                 }}
                 dense
-                className="shrink-0 animate__animated animate__fadeInUp"
+                className="shrink-0"
                 style={{ animationDelay: `${i * 25}ms` }}
               />
             </li>

@@ -25,7 +25,7 @@ export default function WebNavbar() {
         <ul className="absolute h-[calc(100vh-100%)] top-full inset-x-0 bg-white overflow-hidden flex flex-col justify-center items-center gap-8 p-4 pb-18 origin-top data-[closed]:scale-y-0 transition-transform">
           {isDrawerOpen && (
             <div
-              className="absolute font-bold pointer-events-none text-8xl text-zinc-500/10 tracking-0.5em uppercase animate__animated animate__zoomIn"
+              className="absolute font-bold pointer-events-none text-8xl text-zinc-500/10 tracking-0.5em uppercase animate-in zoom-in duration-700"
               onAnimationEnd={ev => (ev.target as HTMLDivElement).classList.remove('animate__zoomIn')}>
               {highlightedDrawerMenuText}
             </div>
