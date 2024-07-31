@@ -9,7 +9,63 @@ import { StarIcon } from '@heroicons/react/24/solid';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
 import Link from 'next/link';
+import ProductCarousel from './product-carousel';
 
+// https://payloadcms.com/docs/beta/rich-text/slate#generating-html
+/* const serialize = (content: Record<string, any>[]) => {
+  return content.map((node, i) => {
+    if (Text.isText(node)) {
+      let text = (
+        <span dangerouslySetInnerHTML={{ __html: escapeHTML(node.text) }} />
+      );
+
+      if ((node as any).bold) {
+        text = <strong key={i}>{text}</strong>;
+      }
+
+      if ((node as any).code) {
+        text = <code key={i}>{text}</code>;
+      }
+
+      if ((node as any).italic) {
+        text = <em key={i}>{text}</em>;
+      }
+
+      // Handle other leaf types here...
+
+      return <Fragment key={i}>{text}</Fragment>;
+    }
+
+    if (!node) {
+      return null;
+    }
+
+    switch (node.type) {
+      case "h1":
+        return <h1 key={i}>{serialize(node.children)}</h1>;
+      // Iterate through all headings here...
+      case "h6":
+        return <h6 key={i}>{serialize(node.children)}</h6>;
+      case "blockquote":
+        return <blockquote key={i}>{serialize(node.children)}</blockquote>;
+      case "ul":
+        return <ul key={i}>{serialize(node.children)}</ul>;
+      case "ol":
+        return <ol key={i}>{serialize(node.children)}</ol>;
+      case "li":
+        return <li key={i}>{serialize(node.children)}</li>;
+      case "link":
+        return (
+          <a href={escapeHTML(node.url)} key={i}>
+            {serialize(node.children)}
+          </a>
+        );
+
+      default:
+        return <p key={i}>{serialize(node.children)}</p>;
+    }
+  });
+} */
 
 export default async function ProdukPage({ params }: { params: { produk: string } }) {
   const payload = await getPayloadHMR({ config });
@@ -55,32 +111,7 @@ export default async function ProdukPage({ params }: { params: { produk: string 
       </div>
 
       <section className="container flex flex-col lg:flex-row gap-4 px-2 py-8">
-        <div className="flex-[1_0] lg:sticky top-5 h-min grid grid-cols-3 auto-rows-[20vh] gap-x-3 gap-y-4">
-          <div className="col-span-3 row-span-2">
-            <img src="https://placehold.co/500x500" alt="" className="size-full object-cover" />
-          </div>
-          <div className="">
-            <img src="https://placehold.co/500x500" alt="" className="size-full object-cover" />
-          </div>
-          <div className="">
-            <img src="https://placehold.co/500x500" alt="" className="size-full object-cover" />
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <div className="grow flex gap-1">
-              <button type="button" aria-label="Gambar sebelumnya" className="grow bg-gray-100 hover:bg-gray-200/75 active:bg-gray-200 text-gray-500 disabled:text-gray-300 flex flex-col justify-center items-center">
-                <ChevronLeftIcon className="size-6" />
-              </button>
-              <button type="button" aria-label="Gambar selanjutnya" className="grow bg-gray-100 hover:bg-gray-200/75 active:bg-gray-200 text-gray-500 disabled:text-gray-300 flex flex-col justify-center items-center">
-                <ChevronRightIcon className="size-6" />
-              </button>
-            </div>
-
-            <div className="text-gray-300">
-              +6 gambar lainnya
-            </div>
-          </div>
-        </div>
+        <ProductCarousel items={product.images?.map((el) => (el.image as Media))!} />
 
         <div className="flex-[1_0] flex flex-col p-4 gap-4">
           <div className="flex flex-col gap-2">
@@ -125,8 +156,6 @@ export default async function ProdukPage({ params }: { params: { produk: string 
 
               <div className="text-gray-600 prose prose-gray lg:prose-lg">
                 {JSON.stringify(product.description)}
-                {/* <p>Meja keren diimpor langsung dari desa Konoha, Kutub Utara. Didesain langsung oleh CEO dari perusahaan raksasa microsoft menjadikan anda tercengang sampai terbahak-bahak.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus cursus tincidunt mi eu sapien fringilla purus ultrices. Faucibus volutpat adipiscing amet commodo faucibus sit. Velit adipiscing placerat morbi quis consequat dictum nisl enim, consequat. Id et vel, ipsum blandit libero eleifend. Quis lectus dapibus sit facilisi consequat, tortor, ipsum.</p> */}
               </div>
             </div>
 
