@@ -1,13 +1,20 @@
 'use client';
 
-import type { Media } from '@/payload-types';
 import { cn } from '@/utils/ui';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 import useEmblaCarousel from 'embla-carousel-react';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, type HTMLAttributes } from 'react';
+
+interface ProductCarouselProps extends HTMLAttributes<HTMLElement> {
+  items: {
+    id: string | number;
+    url: string;
+    alt: string;
+  }[];
+}
 
 /* TODO: Add accessibility attributes */
-export default function ProductCarousel({ items = [] }: { items: Media[] }) {
+export default function ProductCarousel({ items = [], className, ...attrs }: ProductCarouselProps) {
   const [selected, setSelected] = useState(0);
   const [emblaMainRef, emblaMainApi] = useEmblaCarousel();
   const [emblaThumbsRef, emblaThumbsApi] = useEmblaCarousel({
@@ -37,18 +44,18 @@ export default function ProductCarousel({ items = [] }: { items: Media[] }) {
   }, [emblaMainApi, onSelect]);
 
   return (
-    <div className="flex-[1_0] lg:sticky top-5 h-min grid grid-cols-3 auto-rows-[20vh] gap-x-3 gap-y-4">
+    <div {...attrs} className={cn('grid grid-cols-3 auto-rows-[20vh] gap-x-3 gap-y-4', className)}>
       <div
         ref={emblaMainRef}
         className="col-span-3 row-span-2 overflow-hidden"
       >
-        <div className="flex touch-pan-y touch-pinch-zoom">
+        <div className="size-full flex touch-pan-y touch-pinch-zoom">
           {items.map((item) => (
             <img
               key={item.id}
-              src={item.sizes!.md!.url!}
+              src={item.url}
               alt={item.alt}
-              className="basis-full grow-0 shrink-0 size-full rounded-md object-cover"
+              className="basis-full grow-0 shrink-0 size-full rounded-md object-cover bg-gray-100"
             />
           ))}
         </div>
@@ -63,9 +70,9 @@ export default function ProductCarousel({ items = [] }: { items: Media[] }) {
               onClick={() => onThumbClick(i)}
             >
               <img
-                src={item.sizes!.sm!.url!}
+                src={item.url}
                 alt={item.alt}
-                className={cn('size-full object-cover rounded hover:brightness-[0.99]', { 'brightness-[0.98]  ring ring-primary-foreground': i === selected })}
+                className={cn('size-full object-cover bg-gray-100 rounded hover:brightness-[0.99]', { 'brightness-[0.98] ring ring-primary-foreground': i === selected })}
               />
             </div>
           ))}

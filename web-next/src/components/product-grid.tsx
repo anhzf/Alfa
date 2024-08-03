@@ -20,7 +20,7 @@ export default async function ProductGrid({ where, limit, sort }: ProductGridPro
     sort,
   });
 
-  return (
+  return docs.length ? (
     // 16.625 are inferred from ProductCard
     <ul className="grid grid-cols-[repeat(auto-fit,16.625rem)] justify-center gap-4">
       {docs.map((el, i) => (
@@ -37,5 +37,9 @@ export default async function ProductGrid({ where, limit, sort }: ProductGridPro
         </li>
       ))}
     </ul>
+  ) : (
+    <div className="h-40 flex flex-col justify-center text-gray-400">
+      Tidak ada data terkait
+    </div>
   );
 }

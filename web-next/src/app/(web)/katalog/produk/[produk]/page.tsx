@@ -1,18 +1,20 @@
 import { MdiWhatsapp } from '@/components/icons/mdi-whatsapp';
-import ProductCard from '@/components/product-card';
+import ProductGrid from '@/components/product-grid';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
 import Separator from '@/components/ui/separator';
 import { CONTACTS } from '@/contents';
-import type { Category, Media } from '@/payload-types';
+import type { Category } from '@/payload-types';
 import { toNextError } from '@/utils/error';
-import { StarIcon } from '@heroicons/react/24/solid';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
+import escapeHTML from 'escape-html';
 import Link from 'next/link';
+import { Fragment } from 'react';
+import { Text } from 'slate';
 import ProductCarousel from './product-carousel';
 
 // https://payloadcms.com/docs/beta/rich-text/slate#generating-html
-/* const serialize = (content: Record<string, any>[]) => {
+const serialize = (content: Record<string, any>[]) => {
   return content.map((node, i) => {
     if (Text.isText(node)) {
       let text = (
@@ -41,20 +43,20 @@ import ProductCarousel from './product-carousel';
     }
 
     switch (node.type) {
-      case "h1":
+      case 'h1':
         return <h1 key={i}>{serialize(node.children)}</h1>;
       // Iterate through all headings here...
-      case "h6":
+      case 'h6':
         return <h6 key={i}>{serialize(node.children)}</h6>;
-      case "blockquote":
+      case 'blockquote':
         return <blockquote key={i}>{serialize(node.children)}</blockquote>;
-      case "ul":
+      case 'ul':
         return <ul key={i}>{serialize(node.children)}</ul>;
-      case "ol":
+      case 'ol':
         return <ol key={i}>{serialize(node.children)}</ol>;
-      case "li":
+      case 'li':
         return <li key={i}>{serialize(node.children)}</li>;
-      case "link":
+      case 'link':
         return (
           <a href={escapeHTML(node.url)} key={i}>
             {serialize(node.children)}
@@ -65,7 +67,7 @@ import ProductCarousel from './product-carousel';
         return <p key={i}>{serialize(node.children)}</p>;
     }
   });
-} */
+}
 
 export default async function ProdukPage({ params }: { params: { produk: string } }) {
   const payload = await getPayloadHMR({ config });
@@ -111,7 +113,10 @@ export default async function ProdukPage({ params }: { params: { produk: string 
       </div>
 
       <section className="container flex flex-col lg:flex-row gap-4 px-2 py-8">
-        <ProductCarousel items={product.images?.map((el) => (el.image as Media))!} />
+        <ProductCarousel
+          items={product.images?.map((el) => el.image) as { id: number, url: string, alt: string }[]}
+          className="flex-[1_0] lg:sticky top-24 h-min"
+        />
 
         <div className="flex-[1_0] flex flex-col p-4 gap-4">
           <div className="flex flex-col gap-2">
@@ -119,7 +124,8 @@ export default async function ProdukPage({ params }: { params: { produk: string 
               {product?.title}
             </h1>
 
-            <div className="flex justify-between lg:justify-start gap-8">
+            {/* TODO: Ensure feature wether to add stats or not */}
+            {/* <div className="flex justify-between lg:justify-start gap-8">
               <div className="flex items-end gap-2">
                 <span className="text-gray-500 text-xs lg:text-sm mb-0.5">
                   terjual
@@ -134,7 +140,7 @@ export default async function ProdukPage({ params }: { params: { produk: string 
                 <span className="text-xl text-gray-700">4.9</span>
                 <span className="text-sm text-gray-500">201 Ulasan</span>
               </div>
-            </div>
+            </div> */}
 
             <a
               href={CONTACTS.whatsapp.href}
@@ -155,7 +161,7 @@ export default async function ProdukPage({ params }: { params: { produk: string 
               </h2>
 
               <div className="text-gray-600 prose prose-gray lg:prose-lg">
-                {JSON.stringify(product.description)}
+                {serialize(product.description as any[])}
               </div>
             </div>
 
@@ -179,11 +185,8 @@ export default async function ProdukPage({ params }: { params: { produk: string 
             </div>
 
             <ul className="flex gap-4">
-              {[
-                'Mebel',
-                'Mewah',
-                'Ergonomis',
-              ].map((tag) => (
+              {/* TODO: Decide to wether add tag property or not */}
+              {[(product.category as Category).title].map((tag) => (
                 <li key={tag}>
                   <Link href={`/katalog?tag=${tag}`} className="rounded-full bg-gray-100 hover:bg-gray-200/75 active:bg-gray-200 text-gray-600 px-3 py-0.5">
                     {tag}
@@ -202,26 +205,16 @@ export default async function ProdukPage({ params }: { params: { produk: string 
 
         <hr className="w-20 h-[3px] bg-zinc-900" />
 
-        <ul className="grid grid-cols-[repeat(auto-fit,theme(size.40))] justify-center gap-4 w-full overflow-hidden p-2 max-w-screen-2xl">
-          {Array.from({ length: 5 }, (_, i) => (
-            <li key={i}>
-              <ProductCard
-                data={{
-                  id: i.toString(),
-                  title: 'Meja Ergonomis',
-                  img: '/contents/products_popular1.png',
-                  review: {
-                    stars: 4,
-                    count: 10,
-                  },
-                }}
-                dense
-                className="shrink-0"
-                style={{ animationDelay: `${i * 25}ms` }}
-              />
-            </li>
-          ))}
-        </ul>
+        <ProductGrid
+          where={{
+            // TODO: Add related tags filter when tag feature is added
+            and: [
+              { category: { equals: (product.category as Category).id } },
+              { id: { not_equals: product.id } },
+            ]
+          }}
+          limit={5}
+        />
 
         <div className="flex flex-col items-center gap-2 p-2">
           <Link href="/katalog" className="btn">
