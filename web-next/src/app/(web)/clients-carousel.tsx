@@ -2,6 +2,7 @@
 
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import Autoscroll from 'embla-carousel-auto-scroll';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRef, type ComponentProps } from 'react';
 
@@ -36,7 +37,15 @@ export default function ClientsCarousel({ clients }: { clients: Client[] }) {
               target="_blank"
               className="shrink-0 size-[7.5rem] lg:size-40 hover:bg-zinc-300/25 active:bg-zinc-300/50 flex flex-col justify-center items-center"
             >
-              <img src={img} alt={title} className="object-contain" />
+              <Image
+                src={img}
+                alt={title}
+                width={120}
+                height={120}
+                loading="lazy"
+                unoptimized
+                className="object-contain"
+              />
             </Link>
           </CarouselItem>
         ))}

@@ -1,9 +1,10 @@
 import { cn } from '@/utils/ui';
 import { StarIcon } from '@heroicons/react/24/solid';
+import Image from 'next/image';
 import Link from 'next/link';
 import type { HTMLAttributes } from 'react';
 
-interface ProductCardProps extends HTMLAttributes<HTMLElement> {
+export interface ProductCardProps extends HTMLAttributes<HTMLElement> {
   data: {
     id: string;
     title: string;
@@ -23,9 +24,11 @@ export default function ProductCard({ dense, data, className, ...props }: Produc
       href={`/katalog/produk/${data.id}`}
       className={cn('group flex flex-col overflow-hidden h-80 w-[16.625rem] shadow-sm shadow-zinc/50', { 'w-40 h-60': dense }, className)}
     >
-      <img
+      <Image
         src={data.img}
         alt="Produk terlaris 1"
+        height={320}
+        width={250}
         loading="lazy"
         className="h-60 bg-zinc-100 active:shadow-none"
       />

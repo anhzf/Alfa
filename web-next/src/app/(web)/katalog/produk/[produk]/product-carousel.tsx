@@ -3,6 +3,7 @@
 import { cn } from '@/utils/ui';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 import useEmblaCarousel from 'embla-carousel-react';
+import Image from 'next/image';
 import { useCallback, useEffect, useState, type HTMLAttributes } from 'react';
 
 interface ProductCarouselProps extends HTMLAttributes<HTMLElement> {
@@ -50,11 +51,14 @@ export default function ProductCarousel({ items = [], className, ...attrs }: Pro
         className="col-span-3 row-span-2 overflow-hidden"
       >
         <div className="size-full flex touch-pan-y touch-pinch-zoom">
-          {items.map((item) => (
-            <img
+          {items.map((item, i) => (
+            <Image
               key={item.id}
               src={item.url}
               alt={item.alt}
+              width={650}
+              height={400}
+              priority={i === selected}
               className="basis-full grow-0 shrink-0 size-full rounded-md object-contain bg-gray-100"
             />
           ))}
@@ -69,9 +73,11 @@ export default function ProductCarousel({ items = [], className, ...attrs }: Pro
               className={cn('basis-1/2 shrink-0 rounded overflow-hidden', { 'ring-2 ring-offset-1': i === selected })}
               onClick={() => onThumbClick(i)}
             >
-              <img
+              <Image
                 src={item.url}
                 alt={item.alt}
+                width={300}
+                height={200}
                 className={cn('size-full object-contain bg-gray-100 rounded border border-input hover:brightness-[0.99]', { 'brightness-[0.98]': i === selected })}
               />
             </div>

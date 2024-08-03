@@ -1,17 +1,36 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
+import Image from 'next/image';
 
 export default function WebSectionHero() {
   return (
     <header className="self-center relative h-[80svh] w-full text-white overflow-hidden">
-      <img src="/hero-slides1_1.png" className="absolute w-full max-w-screen h-full object-cover blur" />
+      <Image
+        src="/hero-slides1_1.png"
+        width={1280}
+        height={720}
+        alt=""
+        className="absolute w-full max-w-screen h-full object-cover blur"
+      />
       {/* <img src="/hero-slides1_1.png" className="absolute w-full max-w-screen h-full object-cover " />
     <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(196,196,196,0)_20.51%,rgba(39,39,42,0.7)_64.84%,#171717_100%)]" /> */}
 
       <div className="relative flex flex-col w-full h-full max-w-screen-xl mx-auto">
-        <img src="/hero-slides1_1.png" className="absolute w-full h-full object-cover blur-lg" />
+        <Image
+          src="/hero-slides1_1.png"
+          alt=""
+          width={1280}
+          height={720}
+          className="absolute w-full h-full object-cover blur-lg"
+        />
 
         <div className="">
-          <img src="/hero-slides1_1.png" className="absolute w-full h-full object-cover" />
+          <Image
+            src="/hero-slides1_1.png"
+            alt="Hero image"
+            width={1280}
+            height={720}
+            className="absolute w-full h-full object-cover"
+          />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(196,196,196,0)_20.51%,rgba(39,39,42,0.7)_64.84%,#171717_100%)]" />
         </div>
 
