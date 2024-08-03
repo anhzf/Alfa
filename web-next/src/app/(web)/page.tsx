@@ -1,76 +1,37 @@
 import ProductCard from '@/components/product-card';
+import ProductGrid from '@/components/product-grid';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import WebSectionHero from '@/components/web-section-hero';
-import { ChevronRightIcon, PrinterIcon, ShieldCheckIcon } from '@heroicons/react/24/solid';
-import { PackageOpenIcon, PencilRulerIcon, ShirtIcon } from 'lucide-react';
-import Link from 'next/link';
-import ClientsCarousel, { type Client } from './clients-carousel';
 import { LOCATION } from '@/contents';
-
-const clients: Client[] = [
-  {
-    title: 'Pertamina',
-    img: '/contents/section_clients_fake-brand1.png',
-    url: 'https://pertamina.com',
-  },
-  {
-    title: 'Tokopedia',
-    img: '/contents/section_clients_fake-brand2.png',
-  },
-  {
-    title: 'BUMN',
-    img: '/contents/section_clients_fake-brand3.svg',
-  },
-  {
-    title: 'Pertagiga',
-    img: '/contents/section_clients_fake-brand1.png',
-  },
-  {
-    title: 'Pertamini',
-    img: '/contents/section_clients_fake-brand1.png',
-  },
-  {
-    title: 'Pertaniga',
-    img: '/contents/section_clients_fake-brand1.png',
-  },
-];
-
-const services = {
-  'Pengadaan Barang': {
-    icon: PackageOpenIcon,
-    desc: 'Kami menyediakan berbagai macam peralatan kantor, mulai dari alat tulis, furnitur, hingga perangkat IT, dengan kualitas terbaik.',
-    url: '#',
-  },
-  'Percetakan': {
-    icon: PrinterIcon,
-    desc: 'Layanan percetakan kami mencakup segala kebutuhan Anda, dari kartu nama, poster, company profile, hingga brosur berkualitas tinggi.',
-    url: '#',
-  },
-  'Merchandise': {
-    icon: ShirtIcon,
-    desc: 'Kami memproduksi berbagai merchandise unik seperti kaos, topi, payung, dan bermacam-macam yang dapat disesuaikan dengan brand Anda.',
-    url: '#',
-  },
-  'Alat Kantor': {
-    icon: PencilRulerIcon,
-    desc: 'Lengkapi kantor Anda dengan peralatan canggih seperti brankas, lemari file, dan paper shredder.',
-    url: '#',
-  },
-  'Solusi Keamanan': {
-    icon: ShieldCheckIcon,
-    desc: 'Lindungi bisnis Anda dengan sistem keamanan canggih seperti pemindai bagasi X-ray untuk inspeksi menyeluruh.',
-    url: '#',
-  },
-};
-
-const catalogCategories = [
-  { title: 'ATK', id: 'atk' },
-  { title: 'Furnitur', id: 'furnitur' },
-  { title: 'Elektronik', id: 'elektronik' },
-  { title: 'IT', id: 'it' },
-];
+import { ChevronRightIcon } from '@heroicons/react/24/solid';
+import { Icon } from '@iconify/react';
+import config from '@payload-config';
+import { getPayloadHMR } from '@payloadcms/next/utilities';
+import Link from 'next/link';
+import { Suspense } from 'react';
+import ClientsCarousel from './clients-carousel';
 
 export default async function Home() {
+  const payload = await getPayloadHMR({ config });
+  const [
+    { docs: [setting] },
+    { docs: categories }
+  ] = await Promise.all([
+    payload.find({
+      collection: 'settings',
+      where: {
+        key: { equals: 'PageHome' },
+      },
+      limit: 1,
+    }),
+    payload.find({ collection: 'categories' }),
+  ]);
+  const page = setting.value as {
+    clients: Record<string, { img: string, url?: string }>,
+    services: Record<string, { url: string, desc: string, icon: string }>,
+    popular: string[],
+  };
+
   return (
     <div className="flex-[1_0] flex flex-col">
       <WebSectionHero />
@@ -81,7 +42,11 @@ export default async function Home() {
             Klien kami
           </h3>
 
-          <ClientsCarousel clients={clients} />
+          <ClientsCarousel clients={Object.entries(page.clients)
+            .map(([title, attrs]) => ({
+              ...attrs,
+              title,
+            }))} />
         </section>
 
         <section className="flex flex-col items-center gap-3 px-2 py-8 bg-zinc-50">
@@ -92,12 +57,12 @@ export default async function Home() {
           <hr className="w-20 h-[3px] bg-zinc-900" />
 
           <ul className="flex flex-col gap-4 px-2 lg:px-12 py-4">
-            {Object.entries(services).map(([title, { url, desc, icon: Icon }]) => (
+            {Object.entries(page.services).map(([title, { url, desc, icon }]) => (
               <li key={title} className="shrink-0">
                 <Link key={title} href={url} className="group flex flex-wrap gap-3 hover:bg-zinc-100 active:bg-zinc-200 px-4 py-5 border rounded-md">
                   <div className="flex items-center gap-3">
                     <div className="size-9 flex justify-center items-center bg-emerald-400/80 rounded-full">
-                      <Icon className="size-6 text-white" />
+                      <Icon icon={icon} className="size-6 text-white" />
                     </div>
                     <h6 className="text-2xl font-medium text-emerald-900 w-[20ch]">
                       {title}
@@ -130,58 +95,24 @@ export default async function Home() {
                 Paling populer
               </TabsTrigger>
 
-              {catalogCategories.map(({ title, id }) => (
-                <TabsTrigger key={id} value={id} className="grow shrink-0 w-24">
+              {categories.map(({ title, id }) => (
+                <TabsTrigger key={id} value={String(id)} className="grow shrink-0 w-24">
                   {title}
                 </TabsTrigger>
               ))}
             </TabsList>
 
             <TabsContent value="populer" className="w-full overflow-hidden p-2 max-w-screen-2xl">
-              {/* 16.625 from ProductCard */}
-              <ul className="grid grid-cols-[repeat(auto-fit,16.625rem)] justify-center gap-4">
-                {Array.from({ length: 8 }, (_, i) => (
-                  <li key={i}>
-                    <ProductCard
-                      data={{
-                        id: i.toString(),
-                        title: 'Meja Ergonomis',
-                        img: '/contents/products_popular1.png',
-                        review: {
-                          stars: 4,
-                          count: 10,
-                        },
-                      }}
-                      className="shrink-0 animate-in fade-in slide-in-from-bottom duration-700"
-                      style={{ animationDelay: `${i * 25}ms` }}
-                    />
-                  </li>
-                ))}
-              </ul>
+              <Suspense fallback={<div>Loading...</div>}>
+                <ProductGrid where={{ id: { in: page.popular } }} />
+              </Suspense>
             </TabsContent>
 
-            {catalogCategories.map(({ id }) => (
-              <TabsContent key={id} value={id} className="w-full overflow-hidden p-2 max-w-screen-2xl">
-                {/* 16.625 from ProductCard */}
-                <ul className="grid grid-cols-[repeat(auto-fit,16.625rem)] justify-center gap-4">
-                  {Array.from({ length: 8 }, (_, i) => (
-                    <li key={i}>
-                      <ProductCard
-                        data={{
-                          id: i.toString(),
-                          title: 'Meja Ergonomis',
-                          img: '/contents/products_popular1.png',
-                          review: {
-                            stars: 4,
-                            count: 10,
-                          },
-                        }}
-                        className="shrink-0 animate-in fade-in slide-in-from-bottom duration-700"
-                        style={{ animationDelay: `${i * 25}ms` }}
-                      />
-                    </li>
-                  ))}
-                </ul>
+            {categories.map(({ id }) => (
+              <TabsContent key={id} value={String(id)} className="w-full overflow-hidden p-2 max-w-screen-2xl">
+                <Suspense fallback={<div>Loading...</div>}>
+                  <ProductGrid where={{ category: { equals: id } }} />
+                </Suspense>
               </TabsContent>
             ))}
           </Tabs>
