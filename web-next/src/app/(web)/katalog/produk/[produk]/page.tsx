@@ -4,8 +4,8 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbP
 import Separator from '@/components/ui/separator';
 import { SITE_NAME } from '@/constants';
 import { CONTACTS } from '@/contents';
+import { getCms } from '@/lib';
 import type { Category, Product } from '@/payload-types';
-import { getCms } from '@/utils/cms';
 import { toNextError } from '@/utils/error';
 import escapeHTML from 'escape-html';
 import Link from 'next/link';

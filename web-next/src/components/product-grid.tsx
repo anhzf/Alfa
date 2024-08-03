@@ -1,7 +1,6 @@
 import ProductCard from '@/components/product-card';
+import { getCms } from '@/lib';
 import type { Media } from '@/payload-types';
-import config from '@payload-config';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
 import type { Where } from 'payload';
 import type { HTMLAttributes } from 'react';
 
@@ -12,7 +11,7 @@ export interface ProductGridProps extends HTMLAttributes<HTMLElement> {
 }
 
 export default async function ProductGrid({ where, limit, sort }: ProductGridProps) {
-  const cms = await getPayloadHMR({ config });
+  const cms = await getCms();
   const { docs } = await cms.find({
     collection: 'products',
     where,
