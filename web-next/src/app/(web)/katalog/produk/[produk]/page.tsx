@@ -21,7 +21,6 @@ interface Props {
 
 const cache = new Map<string, string>();
 
-
 const getProduct = async (id: string): Promise<Product> => {
   if (cache.has(id)) {
     return JSON.parse(cache.get(id) as string);

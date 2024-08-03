@@ -55,24 +55,24 @@ export default function ProductCarousel({ items = [], className, ...attrs }: Pro
               key={item.id}
               src={item.url}
               alt={item.alt}
-              className="basis-full grow-0 shrink-0 size-full rounded-md object-cover bg-gray-100"
+              className="basis-full grow-0 shrink-0 size-full rounded-md object-contain bg-gray-100"
             />
           ))}
         </div>
       </div>
 
       <div ref={emblaThumbsRef} className="col-span-2 overflow-hidden">
-        <div className="flex gap-3 touch-pan-y touch-pinch-zoom">
+        <div className="size-full flex gap-3 touch-pan-y touch-pinch-zoom p-2">
           {items.map((item, i) => (
             <div
               key={item.id}
-              className="basis-1/2 shrink-0 rounded overflow-hidden"
+              className={cn('basis-1/2 shrink-0 rounded overflow-hidden', { 'ring-2 ring-offset-1': i === selected })}
               onClick={() => onThumbClick(i)}
             >
               <img
                 src={item.url}
                 alt={item.alt}
-                className={cn('size-full object-cover bg-gray-100 rounded hover:brightness-[0.99]', { 'brightness-[0.98] ring ring-primary-foreground': i === selected })}
+                className={cn('size-full object-contain bg-gray-100 rounded border border-input hover:brightness-[0.99]', { 'brightness-[0.98]': i === selected })}
               />
             </div>
           ))}
@@ -85,7 +85,7 @@ export default function ProductCarousel({ items = [], className, ...attrs }: Pro
             type="button"
             aria-label="Gambar sebelumnya"
             disabled={!emblaMainApi?.canScrollPrev()}
-            className="grow bg-gray-100 hover:bg-gray-200/75 active:bg-gray-200 disabled:bg-gray-200/25 text-gray-500 disabled:text-gray-300 flex flex-col justify-center items-center"
+            className="grow bg-gray-100 hover:bg-gray-200/75 active:bg-gray-200 disabled:bg-gray-200/25 text-gray-500 disabled:text-gray-300 focus:rounded ring-0 focus:ring ring-primary transition-shadow flex flex-col justify-center items-center"
             onClick={() => emblaMainApi?.scrollPrev()}
           >
             <ChevronLeftIcon className="size-6" />
@@ -94,7 +94,7 @@ export default function ProductCarousel({ items = [], className, ...attrs }: Pro
             type="button"
             aria-label="Gambar selanjutnya"
             disabled={!emblaMainApi?.canScrollNext()}
-            className="grow bg-gray-100 hover:bg-gray-200/75 active:bg-gray-200 disabled:bg-gray-200/25 text-gray-500 disabled:text-gray-300 flex flex-col justify-center items-center"
+            className="grow bg-gray-100 hover:bg-gray-200/75 active:bg-gray-200 disabled:bg-gray-200/25 text-gray-500 disabled:text-gray-300 focus:rounded ring-0 focus:ring ring-primary transition-shadow flex flex-col justify-center items-center"
             onClick={() => emblaMainApi?.scrollNext()}
           >
             <ChevronRightIcon className="size-6" />
