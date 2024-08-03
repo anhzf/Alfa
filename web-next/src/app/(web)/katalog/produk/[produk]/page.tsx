@@ -2,16 +2,41 @@ import { MdiWhatsapp } from '@/components/icons/mdi-whatsapp';
 import ProductGrid from '@/components/product-grid';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
 import Separator from '@/components/ui/separator';
+import { SITE_NAME } from '@/constants';
 import { CONTACTS } from '@/contents';
-import type { Category } from '@/payload-types';
+import type { Category, Product } from '@/payload-types';
+import { getCms } from '@/utils/cms';
 import { toNextError } from '@/utils/error';
-import config from '@payload-config';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
 import escapeHTML from 'escape-html';
 import Link from 'next/link';
 import { Fragment } from 'react';
 import { Text } from 'slate';
 import ProductCarousel from './product-carousel';
+
+interface Props {
+  params: {
+    produk: string;
+  };
+}
+
+const cache = new Map<string, string>();
+
+
+const getProduct = async (id: string): Promise<Product> => {
+  if (cache.has(id)) {
+    return JSON.parse(cache.get(id) as string);
+  }
+
+  const cms = await getCms();
+  const result = await cms.findByID({
+    collection: 'products',
+    id,
+  }).catch(toNextError);
+
+  cache.set(id, JSON.stringify(result));
+
+  return result;
+};
 
 // https://payloadcms.com/docs/beta/rich-text/slate#generating-html
 const serialize = (content: Record<string, any>[]) => {
@@ -69,12 +94,18 @@ const serialize = (content: Record<string, any>[]) => {
   });
 }
 
-export default async function ProdukPage({ params }: { params: { produk: string } }) {
-  const payload = await getPayloadHMR({ config });
-  const product = await payload.findByID({
-    collection: 'products',
-    id: params.produk,
-  }).catch(toNextError);
+export async function generateMetadata({ params }: Props) {
+  const product = await getProduct(params.produk);
+
+  return {
+    title: `${product.title} | ${SITE_NAME}`,
+    description: product.description,
+    image: product.images?.[0]?.image,
+  };
+}
+
+export default async function ProdukPage({ params }: Props) {
+  const product = await getProduct(params.produk);
 
   return (
     <main className="flex-[1_0] flex flex-col items-center [--container-width:theme(screens.2xl)]">
