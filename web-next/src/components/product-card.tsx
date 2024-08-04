@@ -14,33 +14,35 @@ export interface ProductCardProps extends HTMLAttributes<HTMLElement> {
       count: number;
     };
   };
-  dense?: boolean;
 }
 
-export default function ProductCard({ dense, data, className, ...props }: ProductCardProps) {
+export default function ProductCard({ data, className, ...props }: ProductCardProps) {
   return (
     <Link
       {...props}
       href={`/katalog/produk/${data.id}`}
-      className={cn('group flex flex-col overflow-hidden h-80 w-[16.625rem] shadow-sm shadow-zinc/50', { 'w-40 h-60': dense }, className)}
+      className={cn(
+        'group w-40 lg:w-[16.625rem] h-60 lg:h-80 flex flex-col overflow-hidden rounded shadow-sm shadow-zinc-700/20',
+        className,
+      )}
     >
       <Image
         src={data.img}
-        alt="Produk terlaris 1"
+        alt={data.title}
         height={320}
         width={250}
         loading="lazy"
-        className="h-60 bg-zinc-100 active:shadow-none"
+        className="w-full h-60 object-contain bg-zinc-100 active:shadow-none"
       />
 
-      <div className={cn('shrink-0 bg-white group-hover:bg-zinc-300/25 group-active:bg-zinc-300/50 flex flex-col items-center gap-2 p-4', { 'p-2 gap-1': dense })}>
-        <h6 className={cn('text-gray-700 font-medium line-clamp-1', { 'text-sm': dense })}>
+      <div className={cn('shrink-0 bg-white group-hover:bg-zinc-300/25 group-active:bg-zinc-300/50 flex flex-col items-center gap-1 lg:gap-2 p-2 lg:p-4')}>
+        <h6 className={cn('text-sm lg:text-base text-gray-700 font-medium line-clamp-1')}>
           {data.title}
         </h6>
 
         {data.review ? (
           <div className="flex items-center gap-1">
-            <div className={cn('flex *:size-4', { '*:size-3': dense })}>
+            <div className={cn('flex *:size-3 lg:*:size-4')}>
               {Array.from({ length: 5 }, (_, i) => (
                 <StarIcon
                   key={i}

@@ -20,8 +20,8 @@ export default async function ProductGrid({ where, limit, sort }: ProductGridPro
   });
 
   return docs.length ? (
-    // 16.625 are inferred from ProductCard
-    <ul className="grid grid-cols-[repeat(auto-fit,16.625rem)] justify-center gap-4">
+    // 16.625, 10 are inferred from ProductCard
+    <ul className="grid justify-center gap-4 grid-cols-[repeat(auto-fit,10rem)] lg:grid-cols-[repeat(auto-fit,16.625rem)]">
       {docs.map((el, i) => (
         <li key={el.id}>
           <ProductCard
