@@ -70,7 +70,7 @@ export default function ProductCarousel({ items = [], className, ...attrs }: Pro
           {items.map((item, i) => (
             <div
               key={item.id}
-              className={cn('basis-1/2 shrink-0 rounded overflow-hidden', { 'ring-2 ring-offset-1': i === selected })}
+              className={cn('basis-2/5 shrink-0 rounded overflow-hidden', { 'ring-2 ring-offset-1': i === selected })}
               onClick={() => onThumbClick(i)}
             >
               <Image

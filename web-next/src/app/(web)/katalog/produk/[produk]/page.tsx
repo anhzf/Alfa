@@ -201,7 +201,7 @@ export default async function ProdukPage({ params }: Props) {
               </h2>
 
               <div className="lg:text-lg text-gray-600">
-                <table className="[&_th]:w-[12ch] [&_th]:text-gray-500 [&_th]:text-left [&_th]:font-normal [&_td]:text-gray-600">
+                <table className="[&_th]:w-[16ch] [&_th]:text-gray-500 [&_th]:text-left [&_th]:font-normal [&_td]:text-gray-600">
                   <tbody>
                     {(product.specs || []).map(({ id, name, value }) => (
                       <tr key={id}>
