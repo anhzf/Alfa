@@ -23,10 +23,10 @@ export default function ClientsCarousel({ clients }: { clients: Client[] }) {
   return (
     <Carousel
       plugins={plugins.current}
-      opts={{ loop: true }}
+      opts={{ loop: true, align: 'start' }}
       className="container"
     >
-      <CarouselContent>
+      <CarouselContent className="gap-4">
         {clients.map(({ title, img, url }) => (
           <CarouselItem
             key={title}
@@ -34,6 +34,7 @@ export default function ClientsCarousel({ clients }: { clients: Client[] }) {
           >
             <Link
               href={url || '#'}
+              title={title}
               target="_blank"
               className="shrink-0 size-[7.5rem] lg:size-40 hover:bg-zinc-300/25 active:bg-zinc-300/50 flex flex-col justify-center items-center"
             >
@@ -43,7 +44,6 @@ export default function ClientsCarousel({ clients }: { clients: Client[] }) {
                 width={120}
                 height={120}
                 loading="lazy"
-                unoptimized
                 className="object-contain"
               />
             </Link>

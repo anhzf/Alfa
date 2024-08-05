@@ -12,6 +12,7 @@ import Link from 'next/link';
 import { Fragment } from 'react';
 import { Text } from 'slate';
 import ProductCarousel from './product-carousel';
+import { StarIcon } from '@heroicons/react/24/solid';
 
 interface Props {
   params: {
@@ -107,7 +108,7 @@ export default async function ProdukPage({ params }: Props) {
   const product = await getProduct(params.produk);
 
   return (
-    <main className="flex-[1_0] flex flex-col items-center [--container-width:theme(screens.2xl)]">
+    <main className="flex-[1_0] flex flex-col items-center">
       <div className="container flex px-2 pt-8 pb-4">
         <Breadcrumb>
           <BreadcrumbList>
@@ -155,7 +156,7 @@ export default async function ProdukPage({ params }: Props) {
             </h1>
 
             {/* TODO: Ensure feature wether to add stats or not */}
-            {/* <div className="flex justify-between lg:justify-start gap-8">
+            <div className="flex justify-between lg:justify-start gap-8">
               <div className="flex items-end gap-2">
                 <span className="text-gray-500 text-xs lg:text-sm mb-0.5">
                   terjual
@@ -170,10 +171,10 @@ export default async function ProdukPage({ params }: Props) {
                 <span className="text-xl text-gray-700">4.9</span>
                 <span className="text-sm text-gray-500">201 Ulasan</span>
               </div>
-            </div> */}
+            </div>
 
             <a
-              href={CONTACTS.whatsapp.href}
+              href={`${CONTACTS.whatsapp.href}?text=${encodeURIComponent(`Halo, saya tertarik dengan produk ${product.title}. Referensi produk: ${/* window.location.href */product.id}`)}`}
               target="_blank"
               className="btn btn--filled !bg-[#0cc143] hover:!bg-[#0cc143]/80 active:!bg-[#0cc143]/90"
             >

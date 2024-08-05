@@ -1,4 +1,3 @@
-import ProductCard from '@/components/product-card';
 import ProductGrid from '@/components/product-grid';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import WebSectionHero from '@/components/web-section-hero';
