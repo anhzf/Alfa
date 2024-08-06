@@ -58,8 +58,8 @@ export default async function Home() {
           <hr className="w-20 h-[3px] bg-zinc-900" />
 
           <ul className="flex flex-col gap-4 px-2 lg:px-12 py-4">
-            {Object.entries(page.services).map(([title, { url, desc, icon }]) => (
-              <li key={title} className="shrink-0">
+            {Object.entries(page.services).map(([title, { url, desc, icon }], i) => (
+              <li key={title} className="shrink-0" data-aos="fade-up" data-aos-delay={i * 50}>
                 <Link key={title} href={url} className="group flex flex-wrap gap-3 hover:bg-zinc-100 active:bg-zinc-200 px-4 py-5 border rounded-md">
                   <div className="flex items-center gap-3">
                     <div className="size-9 flex justify-center items-center bg-emerald-400/80 rounded-full">

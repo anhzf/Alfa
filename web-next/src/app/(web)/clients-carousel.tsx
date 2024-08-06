@@ -27,7 +27,7 @@ export default function ClientsCarousel({ clients }: { clients: Client[] }) {
       className="container"
     >
       <CarouselContent className="gap-4">
-        {clients.map(({ title, img, url }) => (
+        {clients.map(({ title, img, url }, i) => (
           <CarouselItem
             key={title}
             className="basis-1/3 lg:basis-1/5"
@@ -36,6 +36,8 @@ export default function ClientsCarousel({ clients }: { clients: Client[] }) {
               href={url || '#'}
               title={title}
               target="_blank"
+              data-aos="fade-up"
+              data-aos-delay={100 + i * 50}
               className="shrink-0 size-[7.5rem] lg:size-40 hover:bg-zinc-300/25 active:bg-zinc-300/50 flex flex-col justify-center items-center"
             >
               <Image
