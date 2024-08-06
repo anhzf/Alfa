@@ -10,9 +10,8 @@ const nextConfig = {
         hostname: process.env.APP_HOSTNAME,
         port: process.env.APP_PORT,
       }
-    ]
-    // loa
-  }
+    ],
+  },
 };
 
 export default withPayload(nextConfig);

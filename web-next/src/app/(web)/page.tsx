@@ -2,6 +2,7 @@ import ProductGrid from '@/components/product-grid';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import WebSectionHero from '@/components/web-section-hero';
 import { LOCATION } from '@/contents';
+import { contentAsset } from '@/utils/cms';
 import { ChevronRightIcon } from '@heroicons/react/24/solid';
 import { Icon } from '@iconify/react';
 import config from '@payload-config';
@@ -45,6 +46,7 @@ export default async function Home() {
             .map(([title, attrs]) => ({
               ...attrs,
               title,
+              img: contentAsset(attrs.img),
             }))} />
         </section>
 

@@ -1,6 +1,7 @@
 import ProductCard from '@/components/product-card';
 import { getCms } from '@/lib';
 import type { Media } from '@/payload-types';
+import { contentAsset } from '@/utils/cms';
 import type { Where } from 'payload';
 import type { HTMLAttributes } from 'react';
 
@@ -28,7 +29,7 @@ export default async function ProductGrid({ where, limit, sort }: ProductGridPro
             data={{
               id: String(el.id),
               title: el.title,
-              img: (el.images![0]!.image as Media).url!,
+              img: contentAsset((el.images![0]!.image as Media).url!),
             }}
             className="shrink-0 animate-in fade-in slide-in-from-bottom duration-700"
             style={{ animationDelay: `${i * 25}ms` }}

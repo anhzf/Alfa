@@ -5,7 +5,7 @@ import Separator from '@/components/ui/separator';
 import { SITE_NAME } from '@/constants';
 import { CONTACTS } from '@/contents';
 import { getCms } from '@/lib';
-import type { Category, Product } from '@/payload-types';
+import type { Category, Media, Product } from '@/payload-types';
 import { toNextError } from '@/utils/error';
 import escapeHTML from 'escape-html';
 import Link from 'next/link';
@@ -13,6 +13,7 @@ import { Fragment } from 'react';
 import { Text } from 'slate';
 import ProductCarousel from './product-carousel';
 import { StarIcon } from '@heroicons/react/24/solid';
+import { contentAsset } from '@/utils/cms';
 
 interface Props {
   params: {
@@ -145,7 +146,8 @@ export default async function ProdukPage({ params }: Props) {
 
       <section className="container flex flex-col lg:flex-row gap-4 px-2 py-8">
         <ProductCarousel
-          items={product.images?.map((el) => el.image) as { id: number, url: string, alt: string }[]}
+          items={(product.images as { image: Media }[])
+            ?.map((el) => ({ ...el.image, url: contentAsset(el.image.url!) }))}
           className="flex-[1_0] lg:sticky top-24 h-min"
         />
 
