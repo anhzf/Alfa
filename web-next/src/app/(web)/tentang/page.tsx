@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import imgBusinessSuccess from '@/assets/united-business-team-celebrating-success.jpg';
 import { getCms } from '@/lib';
+import { contentAsset } from '@/utils/cms';
 
 export default async function TentangPage() {
   const cms = await getCms();
@@ -120,7 +121,7 @@ export default async function TentangPage() {
                   className="shrink-0 size-[7.5rem] lg:size-40 hover:bg-zinc-300/25 active:bg-zinc-300/50 flex flex-col justify-center items-center"
                 >
                   <Image
-                    src={img}
+                    src={contentAsset(img)}
                     alt={title}
                     width={120}
                     height={120}
