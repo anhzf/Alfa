@@ -5,17 +5,13 @@
       "name": "$root",
     },
     {
-      "path": "./web",
-    },
-    {
       "path": "./web-next",
+      "name": "web",
     }
   ],
   "settings": {
     "conventionalCommits.scopes": [
       "web",
-      "web-next"
-    ],
-    "unocss.root": "./web"
+    ]
   }
 }
