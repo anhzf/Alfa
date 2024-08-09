@@ -2,32 +2,33 @@ import ProductGrid from '@/components/product-grid';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import WebSectionHero from '@/components/web-section-hero';
 import { LOCATION } from '@/contents';
+import { getCms } from '@/lib';
 import { contentAsset } from '@/utils/cms';
 import { ChevronRightIcon } from '@heroicons/react/24/solid';
 import { Icon } from '@iconify/react';
-import config from '@payload-config';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import ClientsCarousel from './clients-carousel';
+import type { Media } from '@/payload-types';
 
 export default async function Home() {
-  const payload = await getPayloadHMR({ config });
+  const cms = await getCms();
   const [
     { docs: [setting] },
-    { docs: categories }
+    { docs: categories },
+    { docs: clients },
   ] = await Promise.all([
-    payload.find({
+    cms.find({
       collection: 'settings',
       where: {
         key: { equals: 'PageHome' },
       },
       limit: 1,
     }),
-    payload.find({ collection: 'categories' }),
+    cms.find({ collection: 'categories' }),
+    cms.find({ collection: 'clients' }),
   ]);
   const page = setting.value as {
-    clients: Record<string, { img: string, url?: string }>,
     services: Record<string, { url: string, desc: string, icon: string }>,
     popular: string[],
   };
@@ -42,12 +43,11 @@ export default async function Home() {
             Klien kami
           </h3>
 
-          <ClientsCarousel clients={Object.entries(page.clients)
-            .map(([title, attrs]) => ({
-              ...attrs,
-              title,
-              img: contentAsset(attrs.img),
-            }))} />
+          <ClientsCarousel clients={clients.map(({ title, img, ...attrs }) => ({
+            ...attrs,
+            title,
+            img: contentAsset((img as Media).url!),
+          }))} />
         </section>
 
         <section className="flex flex-col items-center gap-3 px-2 py-8 bg-zinc-50">

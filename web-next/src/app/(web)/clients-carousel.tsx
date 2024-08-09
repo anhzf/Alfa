@@ -1,36 +1,33 @@
 'use client';
 
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 import Autoscroll from 'embla-carousel-auto-scroll';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRef, type ComponentProps } from 'react';
 
-const MINIMUM_ITEMS = 6;
-
 export interface Client {
   title: string;
   img: string;
-  url?: string;
+  url?: string | null;
 }
 
 export default function ClientsCarousel({ clients }: { clients: Client[] }) {
-  const plugins = useRef<ComponentProps<typeof Carousel>['plugins']>(
-    clients.length > MINIMUM_ITEMS
-      ? [Autoscroll({ stopOnInteraction: true })]
-      : []);
+  const plugins = useRef<ComponentProps<typeof Carousel>['plugins']>([
+    Autoscroll({ stopOnInteraction: true })
+  ]);
 
   return (
     <Carousel
       plugins={plugins.current}
       opts={{ loop: true, align: 'start' }}
-      className="container"
+      className="container p-0"
     >
       <CarouselContent className="gap-4">
         {clients.map(({ title, img, url }, i) => (
           <CarouselItem
-            key={title}
-            className="basis-1/3 lg:basis-1/5"
+            key={`${i}${title}`}
+            className="basis-1/3 lg:basis-1/5 aspect-square max-h-28 flex flex-col justify-center items-center p-2"
           >
             <Link
               href={url || '#'}
@@ -38,7 +35,8 @@ export default function ClientsCarousel({ clients }: { clients: Client[] }) {
               target="_blank"
               data-aos="fade-up"
               data-aos-delay={100 + i * 50}
-              className="shrink-0 size-[7.5rem] lg:size-40 hover:bg-zinc-300/25 active:bg-zinc-300/50 flex flex-col justify-center items-center"
+              data-aos-offset="-100"
+              className="size-full hover:bg-zinc-300/25 active:bg-zinc-300/50 flex flex-col justify-center items-center"
             >
               <Image
                 src={img}
@@ -52,9 +50,6 @@ export default function ClientsCarousel({ clients }: { clients: Client[] }) {
           </CarouselItem>
         ))}
       </CarouselContent>
-
-      <CarouselPrevious />
-      <CarouselNext />
     </Carousel>
   )
 }

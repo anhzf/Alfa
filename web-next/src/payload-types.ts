@@ -16,6 +16,7 @@ export interface Config {
     settings: Setting;
     categories: Category;
     products: Product;
+    clients: Client;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -175,6 +176,18 @@ export interface Product {
         id?: string | null;
       }[]
     | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "clients".
+ */
+export interface Client {
+  id: number;
+  title: string;
+  img: number | Media;
+  url?: string | null;
   updatedAt: string;
   createdAt: string;
 }

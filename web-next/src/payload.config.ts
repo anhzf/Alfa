@@ -6,20 +6,21 @@ import { buildConfig } from 'payload';
 import sharp from 'sharp';
 import { fileURLToPath } from 'url';
 
+import Clients from '@/collections/Clients';
 import Categories from './collections/Categories';
 import Media from './collections/Media';
-import Settings from './collections/Settings';
 import Products from './collections/Products';
+import Settings from './collections/Settings';
 import Users from './collections/Users';
 
-const filename = fileURLToPath(import.meta.url)
-const dirname = path.dirname(filename)
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
 
 const config = buildConfig({
   admin: {
     user: Users.slug,
   },
-  collections: [Users, Media, Settings, Categories, Products],
+  collections: [Users, Media, Settings, Categories, Products, Clients],
   editor: slateEditor({}),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
