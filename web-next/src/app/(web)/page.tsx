@@ -7,10 +7,10 @@ import { contentAsset } from '@/utils/cms';
 import { ChevronRightIcon } from '@heroicons/react/24/solid';
 import { Icon } from '@iconify/react';
 import Link from 'next/link';
-import { Suspense } from 'react';
+import { Fragment, Suspense } from 'react';
 import ClientsCarousel from './clients-carousel';
 import type { Media } from '@/payload-types';
-import managerImg from '@/assets/manager.jpg';
+import managerImg from '@/assets/business-8788627_1280.jpg';
 import Image from 'next/image';
 
 export default async function Home() {
@@ -33,6 +33,7 @@ export default async function Home() {
   const page = setting.value as {
     services: Record<string, { url: string, desc: string, icon: string }>,
     popular: string[],
+    'why-us': Record<string, string>,
   };
 
   return (
@@ -100,55 +101,27 @@ export default async function Home() {
             <Image
               src={managerImg}
               alt=""
-              objectFit="cover"
               data-aos="zoom-in"
               loading="lazy"
-              className="w-full lg:max-w-80 h-[28rem] object-cover rounded-tr-[3rem] rounded-bl-[3rem]"
+              className="hidden lg:block w-80 max-w-full h-[28rem] object-cover bg-gray-100 rounded-tr-[3rem] rounded-bl-[3rem]"
             />
           </div>
 
           <div className="flex flex-col justify-center gap-3 max-w-prose">
-            <div data-aos="fade-up">
-              <h4 className="text-xl text-blue-400 font-bold">
-                Pengalaman
-              </h4>
-              <p className="text-lg text-zinc-500">
-                Kami telah melayani berbagai perusahaan dan instansi pemerintah dalam pengadaan barang dan jasa.
-              </p>
-            </div>
+            {Object.entries(page['why-us']).map(([title, desc], i, arr) => (
+              <Fragment key={title}>
+                <div data-aos="fade-up">
+                  <h4 className="text-xl text-blue-400 font-bold">
+                    {title}
+                  </h4>
+                  <p className="text-lg text-zinc-500">
+                    {desc}
+                  </p>
+                </div>
 
-            <hr className="w-full h-px bg-orange-200" />
-
-            <div data-aos="fade-up">
-              <h4 className="text-xl text-blue-400 font-bold">
-                Kualitas
-              </h4>
-              <p className="text-lg text-zinc-500">
-                Kami menyediakan produk berkualitas dengan harga terjangkau.
-              </p>
-            </div>
-
-            <hr className="w-full h-px bg-orange-200" />
-
-            <div data-aos="fade-up">
-              <h4 className="text-xl text-blue-400 font-bold">
-                Pelayanan
-              </h4>
-              <p className="text-lg text-zinc-500">
-                Kami memberikan pelayanan terbaik untuk memenuhi kebutuhan bisnis Anda.
-              </p>
-            </div>
-
-            <hr className="w-full h-px bg-orange-200" />
-
-            <div data-aos="fade-up">
-              <h4 className="text-xl text-blue-400 font-bold">
-                Kepercayaan
-              </h4>
-              <p className="text-lg text-zinc-500">
-                Kami selalu berusaha untuk membangun kepercayaan dengan memberikan layanan yang terbaik.
-              </p>
-            </div>
+                {(i < arr.length - 1) && <hr className="w-full h-px bg-orange-200" />}
+              </Fragment>
+            ))}
           </div>
         </section>
 

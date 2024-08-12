@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import heroImg from '@/assets/hero1.jpg';
+import heroImg from '@/assets/hero.jpg';
 import Link from 'next/link';
 
 export default function WebSectionHero() {
@@ -18,9 +18,9 @@ export default function WebSectionHero() {
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(196,196,196,0)_20.51%,rgba(39,39,42,0.7)_64.84%,#171717_100%)]" />
 
       <div className="relative flex flex-col container h-full mx-auto">
-        <div className="absolute inset-0 flex flex-col justify-center items-center gap-4">
+        <div className="absolute inset-0 flex flex-col justify-center items-center gap-4 p-4">
           <div className="flex flex-col gap-3">
-            <h3 className="text-6xl text-center font-bold overflow-hidden">
+            <h3 className="text-4xl lg:text-6xl text-center font-semibold overflow-hidden">
               {title.split('\n').map((line, i) => (
                 <div
                   key={i}
@@ -40,7 +40,7 @@ export default function WebSectionHero() {
             data-aos-mirror
             className="max-w-prose"
           >
-            <p className="text-lg text-center">
+            <p className="lg:text-lg text-center">
               Kami menyediakan layanan pengadaan barang dan jasa untuk berbagai kebutuhan bisnis Anda secara profesional, efisien, dan terpercaya.
             </p>
           </div>
