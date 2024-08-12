@@ -31,8 +31,8 @@ export default async function ProductGrid({ where, limit, sort }: ProductGridPro
               title: el.title,
               img: contentAsset((el.images![0]!.image as Media).url!),
             }}
-            className="shrink-0 animate-in fade-in slide-in-from-bottom duration-700"
-            style={{ animationDelay: `${i * 25}ms` }}
+            data-aos="fade-up"
+            data-aos-delay={`${i * 25}`}
           />
         </li>
       ))}
