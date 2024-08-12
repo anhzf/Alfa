@@ -10,6 +10,8 @@ import Link from 'next/link';
 import { Suspense } from 'react';
 import ClientsCarousel from './clients-carousel';
 import type { Media } from '@/payload-types';
+import managerImg from '@/assets/manager.jpg';
+import Image from 'next/image';
 
 export default async function Home() {
   const cms = await getCms();
@@ -83,7 +85,74 @@ export default async function Home() {
           </ul>
         </section>
 
-        <section className="flex flex-col items-center gap-3 px-2 py-8">
+        <section
+          id="why-us"
+          className="flex container justify-center gap-12 flex-wrap px-2 py-16"
+        >
+          <div className="flex flex-col justify-center gap-8 max-w-prose">
+            <h3
+              data-aos="fade-up"
+              className="text-4xl text-zinc-700 font-bold"
+            >
+              Mengapa Kami
+            </h3>
+
+            <Image
+              src={managerImg}
+              alt=""
+              objectFit="cover"
+              data-aos="zoom-in"
+              loading="lazy"
+              className="w-full lg:max-w-80 h-[28rem] object-cover rounded-tr-[3rem] rounded-bl-[3rem]"
+            />
+          </div>
+
+          <div className="flex flex-col justify-center gap-3 max-w-prose">
+            <div data-aos="fade-up">
+              <h4 className="text-xl text-blue-400 font-bold">
+                Pengalaman
+              </h4>
+              <p className="text-lg text-zinc-500">
+                Kami telah melayani berbagai perusahaan dan instansi pemerintah dalam pengadaan barang dan jasa.
+              </p>
+            </div>
+
+            <hr className="w-full h-px bg-orange-200" />
+
+            <div data-aos="fade-up">
+              <h4 className="text-xl text-blue-400 font-bold">
+                Kualitas
+              </h4>
+              <p className="text-lg text-zinc-500">
+                Kami menyediakan produk berkualitas dengan harga terjangkau.
+              </p>
+            </div>
+
+            <hr className="w-full h-px bg-orange-200" />
+
+            <div data-aos="fade-up">
+              <h4 className="text-xl text-blue-400 font-bold">
+                Pelayanan
+              </h4>
+              <p className="text-lg text-zinc-500">
+                Kami memberikan pelayanan terbaik untuk memenuhi kebutuhan bisnis Anda.
+              </p>
+            </div>
+
+            <hr className="w-full h-px bg-orange-200" />
+
+            <div data-aos="fade-up">
+              <h4 className="text-xl text-blue-400 font-bold">
+                Kepercayaan
+              </h4>
+              <p className="text-lg text-zinc-500">
+                Kami selalu berusaha untuk membangun kepercayaan dengan memberikan layanan yang terbaik.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="flex flex-col items-center gap-3 px-2 py-8 bg-zinc-50">
           <h3 className="text-lg text-zinc-900 font-bold leading-7">
             Katalog Produk
           </h3>
@@ -125,7 +194,7 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className="flex flex-col items-center gap-3 px-2 py-8 bg-zinc-50">
+        <section className="flex flex-col items-center gap-3 px-2 py-8">
           <h3 className="text-lg text-zinc-900 font-bold leading-7">
             Temukan kami
           </h3>

@@ -56,16 +56,14 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-  }
-}
+  } 
 
-@layer base {
   * {
     @apply border-border;
   }
 
   html {
-    @apply font-sans -tracking-[0.015em];
+    @apply font-sans -tracking-[0.015em] scroll-smooth;
   }
 
   body {
